@@ -1,0 +1,23 @@
+[
+  { "tienda": "PACHUCA PLAZA Q", "lat": 20.1165, "lon": -98.7414 },
+  { "tienda": "LEON PLAZA", "lat": 21.122, "lon": -101.683 },
+  { "tienda": "PASEO DURANGO", "lat": 24.0277, "lon": -104.6532 },
+  { "tienda": "SATELITE", "lat": 19.513, "lon": -99.236 },
+  { "tienda": "CUAUTITLAN", "lat": 19.7055, "lon": -99.1666 },
+  { "tienda": "QUERETARO PLAZA", "lat": 20.5888, "lon": -100.3899 },
+  { "tienda": "PERISUR", "lat": 19.304, "lon": -99.19 },
+  { "tienda": "TANGAMANGA", "lat": 22.1332, "lon": -101.0069 },
+  { "tienda": "MORELIA LAS AMERICAS", "lat": 19.6787, "lon": -101.1884 },
+  { "tienda": "TEZONTLE", "lat": 19.3894, "lon": -99.0891 },
+  { "tienda": "UNIVERSIDAD", "lat": 19.3328, "lon": -99.1857 },
+  { "tienda": "COAPA", "lat": 19.3084, "lon": -99.1225 },
+  { "tienda": "SANTA FE", "lat": 19.361, "lon": -99.2613 },
+  { "tienda": "ANGELOPOLIS", "lat": 19.0155, "lon": -98.2417 },
+  { "tienda": "COLIMA ZENTRALIA", "lat": 19.2439, "lon": -103.7274 },
+  { "tienda": "TLALNEPANTLA", "lat": 19.5387, "lon": -99.1943 },
+  { "tienda": "INSURGENTES", "lat": 19.3925, "lon": -99.1716 },
+  { "tienda": "CULIACAN GALERIAS", "lat": 24.8007, "lon": -107.4188 },
+  { "tienda": "FORJADORES", "lat": 19.0797, "lon": -98.2364 },
+  { "tienda": "OAXACA PLAZA", "lat": 17.0732, "lon": -96.7266 }
+]
+
