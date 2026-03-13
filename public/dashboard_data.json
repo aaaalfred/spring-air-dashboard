@@ -3,7 +3,7 @@
   "metadata": {
     "excelFile": "vta competencia.xlsx",
     "sourceSheet": "spring",
-    "generatedAt": "2026-03-11T21:14:53.039Z",
+    "generatedAt": "2026-03-13T04:34:40.688Z",
     "dateRange": {
       "startDay": 1,
       "endDay": 31,
@@ -8112,23 +8112,23 @@
     },
     {
       "tone": "warning",
-      "title": "Alta concentración en pocos SKUs",
+      "title": "Alta concentracion en pocos SKUs",
       "body": "El top 20% del portafolio concentra 71.9% de la venta Spring Air. Conviene revisar profundidad y cobertura del resto del surtido."
     },
     {
       "tone": "info",
-      "title": "Hay espacio para crecer participación",
-      "body": "Spring Air hoy representa 9.0% del mercado analizado. El potencial inmediato está en tiendas donde la categoría ya mueve volumen, pero la marca aún participa poco."
+      "title": "Hay espacio para crecer participacion",
+      "body": "Spring Air hoy representa 9.0% del mercado analizado. El potencial inmediato esta en tiendas donde la categoria ya mueve volumen, pero la marca aun participa poco."
     },
     {
       "tone": "info",
       "title": "Tienda ancla: PACHUCA PLAZA Q",
-      "body": "Es la plaza más relevante para Spring Air con $515,403 en ventas. Vale la pena replicar ese mix comercial en otras plazas comparables."
+      "body": "Es la plaza mas relevante para Spring Air con $515,403 en ventas. Vale la pena replicar ese mix comercial en otras plazas comparables."
     },
     {
       "tone": "warning",
       "title": "Contraste fuerte entre plazas",
-      "body": "PACHUCA PLAZA Q aporta 27.8% de su tienda, mientras PLAYA DEL CARMEN apenas llega a 0.1%. Hay oportunidad clara de corregir cobertura o ejecución comercial."
+      "body": "PACHUCA PLAZA Q aporta 27.8% de su tienda, mientras PLAYA DEL CARMEN apenas llega a 0.1%. Hay oportunidad clara de corregir cobertura o ejecucion comercial."
     }
   ],
   "mapa": {
@@ -8140,7 +8140,9 @@
         "lon": -98.7414,
         "ventas": 515403.11999999994,
         "piezas": 63,
-        "ticketPromedio": 8181.0019047619035
+        "ticketPromedio": 8181.0019047619035,
+        "segment": "standard",
+        "shareDentroTienda": 0.2783283802359987
       },
       {
         "tienda": "MORELIA LAS AMERICAS",
@@ -8148,7 +8150,9 @@
         "lon": -101.1884,
         "ventas": 430689.12,
         "piezas": 61,
-        "ticketPromedio": 7060.47737704918
+        "ticketPromedio": 7060.47737704918,
+        "segment": "standard",
+        "shareDentroTienda": 0.2645746423328267
       },
       {
         "tienda": "PERISUR",
@@ -8156,7 +8160,9 @@
         "lon": -99.19,
         "ventas": 383145.39,
         "piezas": 56,
-        "ticketPromedio": 6841.881964285714
+        "ticketPromedio": 6841.881964285714,
+        "segment": "standard",
+        "shareDentroTienda": 0.12006919001772572
       },
       {
         "tienda": "LEON PLAZA",
@@ -8164,7 +8170,9 @@
         "lon": -101.683,
         "ventas": 381018.97000000003,
         "piezas": 45,
-        "ticketPromedio": 8467.088222222223
+        "ticketPromedio": 8467.088222222223,
+        "segment": "standard",
+        "shareDentroTienda": 0.24900074473656433
       },
       {
         "tienda": "SATELITE",
@@ -8172,7 +8180,9 @@
         "lon": -99.236,
         "ventas": 377612.44999999995,
         "piezas": 39,
-        "ticketPromedio": 9682.370512820511
+        "ticketPromedio": 9682.370512820511,
+        "segment": "standard",
+        "shareDentroTienda": 0.163371854304246
       },
       {
         "tienda": "TANGAMANGA",
@@ -8180,7 +8190,9 @@
         "lon": -101.0069,
         "ventas": 344767.4100000001,
         "piezas": 48,
-        "ticketPromedio": 7182.654375000002
+        "ticketPromedio": 7182.654375000002,
+        "segment": "standard",
+        "shareDentroTienda": 0.2477726311387305
       },
       {
         "tienda": "QUERETARO PLAZA",
@@ -8188,7 +8200,9 @@
         "lon": -100.3899,
         "ventas": 324307.17000000004,
         "piezas": 39,
-        "ticketPromedio": 8315.568461538463
+        "ticketPromedio": 8315.568461538463,
+        "segment": "standard",
+        "shareDentroTienda": 0.24778638550499268
       },
       {
         "tienda": "PASEO DURANGO",
@@ -8196,7 +8210,9 @@
         "lon": -104.6532,
         "ventas": 313474.84,
         "piezas": 37,
-        "ticketPromedio": 8472.292972972973
+        "ticketPromedio": 8472.292972972973,
+        "segment": "standard",
+        "shareDentroTienda": 0.2766561503003668
       },
       {
         "tienda": "CUAUTITLAN",
@@ -8204,7 +8220,9 @@
         "lon": -99.1666,
         "ventas": 310184.01,
         "piezas": 42,
-        "ticketPromedio": 7385.333571428571
+        "ticketPromedio": 7385.333571428571,
+        "segment": "standard",
+        "shareDentroTienda": 0.16856026699931517
       },
       {
         "tienda": "TEZONTLE",
@@ -8212,7 +8230,9 @@
         "lon": -99.0891,
         "ventas": 239571.63000000003,
         "piezas": 30,
-        "ticketPromedio": 7985.721000000001
+        "ticketPromedio": 7985.721000000001,
+        "segment": "standard",
+        "shareDentroTienda": 0.12526272602233787
       },
       {
         "tienda": "COAPA",
@@ -8220,7 +8240,9 @@
         "lon": -99.1225,
         "ventas": 238081.58999999997,
         "piezas": 31,
-        "ticketPromedio": 7680.05129032258
+        "ticketPromedio": 7680.05129032258,
+        "segment": "standard",
+        "shareDentroTienda": 0.15757075149521785
       },
       {
         "tienda": "COLIMA ZENTRALIA",
@@ -8228,7 +8250,9 @@
         "lon": -103.7274,
         "ventas": 172050.80000000002,
         "piezas": 18,
-        "ticketPromedio": 9558.37777777778
+        "ticketPromedio": 9558.37777777778,
+        "segment": "standard",
+        "shareDentroTienda": 0.21216481413918445
       },
       {
         "tienda": "SANTA FE",
@@ -8236,7 +8260,9 @@
         "lon": -99.2613,
         "ventas": 155943.08,
         "piezas": 20,
-        "ticketPromedio": 7797.1539999999995
+        "ticketPromedio": 7797.1539999999995,
+        "segment": "standard",
+        "shareDentroTienda": 0.1440659768862835
       },
       {
         "tienda": "ANGELOPOLIS",
@@ -8244,7 +8270,9 @@
         "lon": -98.2417,
         "ventas": 148318.05000000002,
         "piezas": 19,
-        "ticketPromedio": 7806.213157894737
+        "ticketPromedio": 7806.213157894737,
+        "segment": "standard",
+        "shareDentroTienda": 0.11768183727312558
       },
       {
         "tienda": "TLALNEPANTLA",
@@ -8252,7 +8280,9 @@
         "lon": -99.1943,
         "ventas": 138220.67,
         "piezas": 14,
-        "ticketPromedio": 9872.905
+        "ticketPromedio": 9872.905,
+        "segment": "standard",
+        "shareDentroTienda": 0.142192433121607
       },
       {
         "tienda": "INSURGENTES",
@@ -8260,7 +8290,9 @@
         "lon": -99.1716,
         "ventas": 137913.16,
         "piezas": 20,
-        "ticketPromedio": 6895.658
+        "ticketPromedio": 6895.658,
+        "segment": "standard",
+        "shareDentroTienda": 0.20584709369698423
       },
       {
         "tienda": "UNIVERSIDAD",
@@ -8268,7 +8300,9 @@
         "lon": -99.1857,
         "ventas": 134911.15000000002,
         "piezas": 20,
-        "ticketPromedio": 6745.557500000001
+        "ticketPromedio": 6745.557500000001,
+        "segment": "standard",
+        "shareDentroTienda": 0.07452690169794329
       },
       {
         "tienda": "OAXACA PLAZA",
@@ -8276,7 +8310,9 @@
         "lon": -96.7266,
         "ventas": 84293.49999999999,
         "piezas": 10,
-        "ticketPromedio": 8429.349999999999
+        "ticketPromedio": 8429.349999999999,
+        "segment": "standard",
+        "shareDentroTienda": 0.04817014261141781
       },
       {
         "tienda": "CULIACAN GALERIAS",
@@ -8284,7 +8320,9 @@
         "lon": -107.4188,
         "ventas": 65710.81000000001,
         "piezas": 6,
-        "ticketPromedio": 10951.801666666668
+        "ticketPromedio": 10951.801666666668,
+        "segment": "standard",
+        "shareDentroTienda": 0.20440013220055608
       },
       {
         "tienda": "FORJADORES",
@@ -8292,7 +8330,9 @@
         "lon": -98.2364,
         "ventas": 53633.92999999999,
         "piezas": 9,
-        "ticketPromedio": 5959.325555555555
+        "ticketPromedio": 5959.325555555555,
+        "segment": "standard",
+        "shareDentroTienda": 0.2632536900795087
       }
     ]
   },
@@ -8676,12 +8716,2712 @@
   },
   "historico": {
     "status": "coming_soon",
-    "title": "Histórico en preparación",
-    "description": "Esta vista se activará cuando el dashboard consolide múltiples periodos en una fuente persistente. Por ahora sólo mostramos datos reales del archivo actual.",
+    "title": "Historico en preparacion",
+    "description": "Esta vista se activara cuando el dashboard consolide multiples periodos en una fuente persistente. Por ahora solo mostramos datos reales del archivo actual.",
     "bullets": [
-      "El diseño ya contempla una capa de acceso a datos reutilizable para cambiar Excel por base de datos.",
-      "Cuando existan varios periodos, esta pestaña mostrará evolución mensual de ventas, market share, productos y tiendas.",
-      "Las familias más fuertes hoy son THERAPY, HARLEM, ASTON."
+      "El diseno ya contempla una capa de acceso a datos reutilizable para cambiar Excel por base de datos.",
+      "Cuando existan varios periodos, esta pestana mostrara evolucion mensual de ventas, market share, productos y tiendas.",
+      "Las familias mas fuertes hoy son THERAPY, HARLEM, ASTON."
     ]
+  },
+  "mediciones": {
+    "raw": {
+      "distribucion": {
+        "base": "raw",
+        "updatedAt": "2026-03-13T04:34:40.688Z",
+        "payload": {
+          "distribucionNumerica": 0.84375,
+          "distribucionPonderada": 0.9172015514975101,
+          "springStores": 81,
+          "marketStores": 96,
+          "coveredMarketSales": 80192433.61999996,
+          "totalMarketSales": 87431637.55999997
+        }
+      },
+      "velocidadProveedores": {
+        "base": "raw",
+        "updatedAt": "2026-03-13T04:34:40.688Z",
+        "payload": [
+          {
+            "proveedor": "ARTABAN THERAPEDIC SA DE CV",
+            "ventas": 20813159.510000046,
+            "piezas": 2833,
+            "tiendasActivas": 95,
+            "skusActivos": 84,
+            "ventasPorTienda": 219085.88957894786,
+            "piezasPorTienda": 29.821052631578947,
+            "ventasPorSku": 247775.7084523815,
+            "piezasPorSku": 33.726190476190474
+          },
+          {
+            "proveedor": "INDUSTRIAS DK SA DE CV",
+            "ventas": 20072387.170000043,
+            "piezas": 2342,
+            "tiendasActivas": 94,
+            "skusActivos": 98,
+            "ventasPorTienda": 213536.03372340472,
+            "piezasPorTienda": 24.914893617021278,
+            "ventasPorSku": 204820.2772448984,
+            "piezasPorSku": 23.897959183673468
+          },
+          {
+            "proveedor": "TEMPUR SEALY MEXICO S DE RL DE CV",
+            "ventas": 17861095.290000003,
+            "piezas": 1358,
+            "tiendasActivas": 85,
+            "skusActivos": 65,
+            "ventasPorTienda": 210130.53282352944,
+            "piezasPorTienda": 15.976470588235294,
+            "ventasPorSku": 274786.08138461545,
+            "piezasPorSku": 20.892307692307693
+          },
+          {
+            "proveedor": "SISTEMAS DE DESCANSO LORD SA DE CV",
+            "ventas": 8738488.120000001,
+            "piezas": 2047,
+            "tiendasActivas": 86,
+            "skusActivos": 57,
+            "ventasPorTienda": 101610.3269767442,
+            "piezasPorTienda": 23.802325581395348,
+            "ventasPorSku": 153306.80912280703,
+            "piezasPorSku": 35.91228070175438
+          },
+          {
+            "proveedor": "SPRING AIR MEXICO SA DE CV",
+            "ventas": 7798512.520000013,
+            "piezas": 1047,
+            "tiendasActivas": 81,
+            "skusActivos": 52,
+            "ventasPorTienda": 96277.93234567916,
+            "piezasPorTienda": 12.925925925925926,
+            "ventasPorSku": 149971.39461538487,
+            "piezasPorSku": 20.134615384615383
+          },
+          {
+            "proveedor": "KSMV CAPITAL SAPI DE CV",
+            "ventas": 4954312.989999998,
+            "piezas": 565,
+            "tiendasActivas": 77,
+            "skusActivos": 48,
+            "ventasPorTienda": 64341.72714285712,
+            "piezasPorTienda": 7.337662337662338,
+            "ventasPorSku": 103214.8539583333,
+            "piezasPorSku": 11.770833333333334
+          },
+          {
+            "proveedor": "COLCHONES WENDY SA DE CV",
+            "ventas": 3951634.2299999967,
+            "piezas": 516,
+            "tiendasActivas": 55,
+            "skusActivos": 32,
+            "ventasPorTienda": 71847.89509090903,
+            "piezasPorTienda": 9.381818181818181,
+            "ventasPorSku": 123488.5696874999,
+            "piezasPorSku": 16.125
+          },
+          {
+            "proveedor": "VITTORIO BENZI DE MEXICO SA DE CV",
+            "ventas": 2272048.3399999994,
+            "piezas": 473,
+            "tiendasActivas": 27,
+            "skusActivos": 54,
+            "ventasPorTienda": 84149.9385185185,
+            "piezasPorTienda": 17.51851851851852,
+            "ventasPorSku": 42074.96925925925,
+            "piezasPorSku": 8.75925925925926
+          },
+          {
+            "proveedor": "SOGNERO DESCANSO S DE RL DE CV",
+            "ventas": 9128.99,
+            "piezas": 2,
+            "tiendasActivas": 2,
+            "skusActivos": 2,
+            "ventasPorTienda": 4564.495,
+            "piezasPorTienda": 1,
+            "ventasPorSku": 4564.495,
+            "piezasPorSku": 1
+          }
+        ]
+      },
+      "oportunidadTiendas": {
+        "base": "raw",
+        "updatedAt": "2026-03-13T04:34:40.688Z",
+        "payload": {
+          "shareObjetivo": 0.24497846643657128,
+          "marketMedian": 729882.0899999997,
+          "benchmarkStores": [
+            "PACHUCA PLAZA Q",
+            "PASEO DURANGO",
+            "MORELIA LAS AMERICAS",
+            "FORJADORES",
+            "LEON PLAZA",
+            "QUERETARO PLAZA",
+            "TANGAMANGA",
+            "COLIMA ZENTRALIA",
+            "INSURGENTES",
+            "CULIACAN GALERIAS"
+          ],
+          "benchmarkRows": [
+            {
+              "tienda": "PACHUCA PLAZA Q",
+              "tiendaId": 233,
+              "ventasMercado": 1851780.6899999997,
+              "ventasSpring": 515403.11999999994,
+              "shareActual": 0.2783283802359987,
+              "shareObjetivo": 0.24497846643657128,
+              "gapShare": 0,
+              "oportunidadVenta": 0,
+              "lat": 20.1165,
+              "lon": -98.7414
+            },
+            {
+              "tienda": "PASEO DURANGO",
+              "tiendaId": 243,
+              "ventasMercado": 1133084.6600000001,
+              "ventasSpring": 313474.84,
+              "shareActual": 0.2766561503003668,
+              "shareObjetivo": 0.24497846643657128,
+              "gapShare": 0,
+              "oportunidadVenta": 0,
+              "lat": 24.0277,
+              "lon": -104.6532
+            },
+            {
+              "tienda": "MORELIA LAS AMERICAS",
+              "tiendaId": 236,
+              "ventasMercado": 1627854.8699999996,
+              "ventasSpring": 430689.12,
+              "shareActual": 0.2645746423328267,
+              "shareObjetivo": 0.24497846643657128,
+              "gapShare": 0,
+              "oportunidadVenta": 0,
+              "lat": 19.6787,
+              "lon": -101.1884
+            },
+            {
+              "tienda": "FORJADORES",
+              "tiendaId": 181,
+              "ventasMercado": 203734.77000000002,
+              "ventasSpring": 53633.92999999999,
+              "shareActual": 0.2632536900795087,
+              "shareObjetivo": 0.24497846643657128,
+              "gapShare": 0,
+              "oportunidadVenta": 0,
+              "lat": 19.0797,
+              "lon": -98.2364
+            },
+            {
+              "tienda": "LEON PLAZA",
+              "tiendaId": 211,
+              "ventasMercado": 1530192.0900000005,
+              "ventasSpring": 381018.97000000003,
+              "shareActual": 0.24900074473656433,
+              "shareObjetivo": 0.24497846643657128,
+              "gapShare": 0,
+              "oportunidadVenta": 0,
+              "lat": 21.122,
+              "lon": -101.683
+            },
+            {
+              "tienda": "QUERETARO PLAZA",
+              "tiendaId": 224,
+              "ventasMercado": 1308817.55,
+              "ventasSpring": 324307.17000000004,
+              "shareActual": 0.24778638550499268,
+              "shareObjetivo": 0.24497846643657128,
+              "gapShare": 0,
+              "oportunidadVenta": 0,
+              "lat": 20.5888,
+              "lon": -100.3899
+            },
+            {
+              "tienda": "TANGAMANGA",
+              "tiendaId": 206,
+              "ventasMercado": 1391466.8799999997,
+              "ventasSpring": 344767.4100000001,
+              "shareActual": 0.2477726311387305,
+              "shareObjetivo": 0.24497846643657128,
+              "gapShare": 0,
+              "oportunidadVenta": 0,
+              "lat": 22.1332,
+              "lon": -101.0069
+            },
+            {
+              "tienda": "COLIMA ZENTRALIA",
+              "tiendaId": 244,
+              "ventasMercado": 810929.9400000001,
+              "ventasSpring": 172050.80000000002,
+              "shareActual": 0.21216481413918445,
+              "shareObjetivo": 0.24497846643657128,
+              "gapShare": 0.032813652297386836,
+              "oportunidadVenta": 26609.573088700767,
+              "lat": 19.2439,
+              "lon": -103.7274
+            },
+            {
+              "tienda": "INSURGENTES",
+              "tiendaId": 101,
+              "ventasMercado": 669978.6600000003,
+              "ventasSpring": 137913.16,
+              "shareActual": 0.20584709369698423,
+              "shareObjetivo": 0.24497846643657128,
+              "gapShare": 0.039131372739587056,
+              "oportunidadVenta": 26217.184672029078,
+              "lat": 19.3925,
+              "lon": -99.1716
+            },
+            {
+              "tienda": "CULIACAN GALERIAS",
+              "tiendaId": 212,
+              "ventasMercado": 321481.24999999994,
+              "ventasSpring": 65710.81000000001,
+              "shareActual": 0.20440013220055608,
+              "shareObjetivo": 0.24497846643657128,
+              "gapShare": 0.0405783342360152,
+              "oportunidadVenta": 13045.173613111954,
+              "lat": 24.8007,
+              "lon": -107.4188
+            }
+          ],
+          "rows": [
+            {
+              "tienda": "INTERNET",
+              "tiendaId": 570,
+              "ventasMercado": 6620620.440000001,
+              "ventasSpring": 459224.9600000001,
+              "shareActual": 0.0693628284783533,
+              "shareObjetivo": 0.24497846643657128,
+              "gapShare": 0.175615637958218,
+              "oportunidadVenta": 1162684.4822498183
+            },
+            {
+              "tienda": "NEZAHUALCOYOTL",
+              "tiendaId": 119,
+              "ventasMercado": 1839509.4999999998,
+              "ventasSpring": 46204.17999999999,
+              "shareActual": 0.02511766315966294,
+              "shareObjetivo": 0.24497846643657128,
+              "gapShare": 0.21986080327690835,
+              "oportunidadVenta": 404436.036305504
+            },
+            {
+              "tienda": "PERISUR",
+              "tiendaId": 105,
+              "ventasMercado": 3191038.3500000006,
+              "ventasSpring": 383145.39,
+              "shareActual": 0.12006919001772572,
+              "shareObjetivo": 0.24497846643657128,
+              "gapShare": 0.12490927641884557,
+              "oportunidadVenta": 398590.29132328695,
+              "lat": 19.304,
+              "lon": -99.19
+            },
+            {
+              "tienda": "OAXACA PLAZA",
+              "tiendaId": 214,
+              "ventasMercado": 1749911.7799999998,
+              "ventasSpring": 84293.49999999999,
+              "shareActual": 0.04817014261141781,
+              "shareObjetivo": 0.24497846643657128,
+              "gapShare": 0.19680832382515348,
+              "oportunidadVenta": 344397.2042636907,
+              "lat": 17.0732,
+              "lon": -96.7266
+            },
+            {
+              "tienda": "ANTENAS TLAHUAC",
+              "tiendaId": 258,
+              "ventasMercado": 1474553.7200000002,
+              "ventasSpring": 25400.499999999996,
+              "shareActual": 0.01722588987805747,
+              "shareObjetivo": 0.24497846643657128,
+              "gapShare": 0.2277525765585138,
+              "oportunidadVenta": 335833.4090039414
+            },
+            {
+              "tienda": "UNIVERSIDAD",
+              "tiendaId": 103,
+              "ventasMercado": 1810234.2499999988,
+              "ventasSpring": 134911.15000000002,
+              "shareActual": 0.07452690169794329,
+              "shareObjetivo": 0.24497846643657128,
+              "gapShare": 0.170451564738628,
+              "oportunidadVenta": 308557.2604559565,
+              "lat": 19.3328,
+              "lon": -99.1857
+            },
+            {
+              "tienda": "MONTERREY GALERIAS",
+              "tiendaId": 117,
+              "ventasMercado": 1251668.6399999997,
+              "ventasSpring": 13997.16,
+              "shareActual": 0.011182799946158277,
+              "shareObjetivo": 0.24497846643657128,
+              "gapShare": 0.233795666490413,
+              "oportunidadVenta": 292634.7039139488
+            },
+            {
+              "tienda": "MONTERREY ANAHUAC",
+              "tiendaId": 113,
+              "ventasMercado": 1154538.13,
+              "ventasSpring": 0,
+              "shareActual": 0,
+              "shareObjetivo": 0.24497846643657128,
+              "gapShare": 0.24497846643657128,
+              "oportunidadVenta": 282836.98052994674
+            },
+            {
+              "tienda": "LINDAVISTA",
+              "tiendaId": 106,
+              "ventasMercado": 1144992.06,
+              "ventasSpring": 13516.469999999998,
+              "shareActual": 0.01180485915334644,
+              "shareObjetivo": 0.24497846643657128,
+              "gapShare": 0.23317360728322484,
+              "oportunidadVenta": 266981.92894085066
+            },
+            {
+              "tienda": "BUENAVISTA",
+              "tiendaId": 122,
+              "ventasMercado": 1377354.8399999994,
+              "ventasSpring": 71613.75,
+              "shareActual": 0.051993682325173395,
+              "shareObjetivo": 0.24497846643657128,
+              "gapShare": 0.19298478411139788,
+              "oportunidadVenta": 265808.5264421889
+            }
+          ]
+        }
+      },
+      "tiendasBlancas": {
+        "base": "raw",
+        "updatedAt": "2026-03-13T04:34:40.688Z",
+        "payload": {
+          "shareThreshold": 0.03,
+          "rows": [
+            {
+              "tienda": "NEZAHUALCOYOTL",
+              "tiendaId": 119,
+              "ventasMercado": 1839509.4999999998,
+              "ventasSpring": 46204.17999999999,
+              "shareActual": 0.02511766315966294,
+              "shareObjetivo": 0.24497846643657128,
+              "gapShare": 0.21986080327690835,
+              "oportunidadVenta": 404436.036305504
+            },
+            {
+              "tienda": "ANTENAS TLAHUAC",
+              "tiendaId": 258,
+              "ventasMercado": 1474553.7200000002,
+              "ventasSpring": 25400.499999999996,
+              "shareActual": 0.01722588987805747,
+              "shareObjetivo": 0.24497846643657128,
+              "gapShare": 0.2277525765585138,
+              "oportunidadVenta": 335833.4090039414
+            },
+            {
+              "tienda": "MONTERREY GALERIAS",
+              "tiendaId": 117,
+              "ventasMercado": 1251668.6399999997,
+              "ventasSpring": 13997.16,
+              "shareActual": 0.011182799946158277,
+              "shareObjetivo": 0.24497846643657128,
+              "gapShare": 0.233795666490413,
+              "oportunidadVenta": 292634.7039139488
+            },
+            {
+              "tienda": "MONTERREY ANAHUAC",
+              "tiendaId": 113,
+              "ventasMercado": 1154538.13,
+              "ventasSpring": 0,
+              "shareActual": 0,
+              "shareObjetivo": 0.24497846643657128,
+              "gapShare": 0.24497846643657128,
+              "oportunidadVenta": 282836.98052994674
+            },
+            {
+              "tienda": "LINDAVISTA",
+              "tiendaId": 106,
+              "ventasMercado": 1144992.06,
+              "ventasSpring": 13516.469999999998,
+              "shareActual": 0.01180485915334644,
+              "shareObjetivo": 0.24497846643657128,
+              "gapShare": 0.23317360728322484,
+              "oportunidadVenta": 266981.92894085066
+            },
+            {
+              "tienda": "TUXTLA GUTIERREZ",
+              "tiendaId": 229,
+              "ventasMercado": 1118949.2100000004,
+              "ventasSpring": 8787.85,
+              "shareActual": 0.007853662991549005,
+              "shareObjetivo": 0.24497846643657128,
+              "gapShare": 0.2371248034450223,
+              "oportunidadVenta": 265330.6114862131
+            },
+            {
+              "tienda": "COACALCO COSMOPOL",
+              "tiendaId": 125,
+              "ventasMercado": 1110335.9699999997,
+              "ventasSpring": 32893.86,
+              "shareActual": 0.02962514129844862,
+              "shareObjetivo": 0.24497846643657128,
+              "gapShare": 0.21535332513812266,
+              "oportunidadVenta": 239114.54315996275
+            },
+            {
+              "tienda": "GUADALAJARA CENTRO",
+              "tiendaId": 202,
+              "ventasMercado": 997237.0899999995,
+              "ventasSpring": 13419.48,
+              "shareActual": 0.013456659539207478,
+              "shareObjetivo": 0.24497846643657128,
+              "gapShare": 0.23152180689736382,
+              "oportunidadVenta": 230882.1329818689
+            },
+            {
+              "tienda": "COATZACOALCOS",
+              "tiendaId": 228,
+              "ventasMercado": 949190.12,
+              "ventasSpring": 6776.5599999999995,
+              "shareActual": 0.007139307349722518,
+              "shareObjetivo": 0.24497846643657128,
+              "gapShare": 0.23783915908684877,
+              "oportunidadVenta": 225754.57995434507
+            },
+            {
+              "tienda": "IRAPUATO",
+              "tiendaId": 304,
+              "ventasMercado": 893434.3100000003,
+              "ventasSpring": 0,
+              "shareActual": 0,
+              "shareObjetivo": 0.24497846643657128,
+              "gapShare": 0.24497846643657128,
+              "oportunidadVenta": 218872.1671256163
+            }
+          ]
+        }
+      },
+      "concentracionPortafolio": {
+        "base": "raw",
+        "updatedAt": "2026-03-13T04:34:40.688Z",
+        "payload": {
+          "top5SkusShare": 0.37143998840435216,
+          "top10SkusShare": 0.5964534657180998,
+          "longTailSkusShare": 0.40354653428190024,
+          "top5StoresShare": 0.2781917134115208,
+          "top10StoresShare": 0.492379467257686,
+          "longTailStoresShare": 0.507620532742314
+        }
+      },
+      "productividadSku": {
+        "base": "raw",
+        "updatedAt": "2026-03-13T04:34:40.688Z",
+        "payload": [
+          {
+            "interno": 5607059,
+            "descripcion": "COLCHON MATRIMONIAL THERAPY",
+            "familia": "THERAPY",
+            "ventas": 797787.67,
+            "piezas": 121,
+            "tiendas": 46,
+            "diasConVenta": 28,
+            "ticketPromedio": 6593.286528925621,
+            "ventasPorTienda": 17343.210217391304,
+            "piezasPorTienda": 2.630434782608696,
+            "shareSpring": 0.10229997938119599
+          },
+          {
+            "interno": 58666514,
+            "descripcion": "COLCHON MATRIMONIAL HARLEM",
+            "familia": "HARLEM",
+            "ventas": 639023.7099999997,
+            "piezas": 109,
+            "tiendas": 39,
+            "diasConVenta": 28,
+            "ticketPromedio": 5862.6028440366945,
+            "ventasPorTienda": 16385.223333333328,
+            "piezasPorTienda": 2.7948717948717947,
+            "shareSpring": 0.08194174316719552
+          },
+          {
+            "interno": 92880576,
+            "descripcion": "COLCHON KING SIZE ASTON",
+            "familia": "ASTON",
+            "ventas": 494840.27999999997,
+            "piezas": 35,
+            "tiendas": 23,
+            "diasConVenta": 18,
+            "ticketPromedio": 14138.293714285714,
+            "ventasPorTienda": 21514.794782608693,
+            "piezasPorTienda": 1.5217391304347827,
+            "shareSpring": 0.06345316221919704
+          },
+          {
+            "interno": 5607299,
+            "descripcion": "COLCHON KING SIZE THERAPY",
+            "familia": "THERAPY",
+            "ventas": 492010.35,
+            "piezas": 53,
+            "tiendas": 23,
+            "diasConVenta": 25,
+            "ticketPromedio": 9283.214150943395,
+            "ventasPorTienda": 21391.754347826085,
+            "piezasPorTienda": 2.3043478260869565,
+            "shareSpring": 0.0630902814784478
+          },
+          {
+            "interno": 92878909,
+            "descripcion": "COLCHON MATRIMONAL ASTON",
+            "familia": "ASTON",
+            "ventas": 473017.39,
+            "piezas": 36,
+            "tiendas": 21,
+            "diasConVenta": 20,
+            "ticketPromedio": 13139.371944444445,
+            "ventasPorTienda": 22524.63761904762,
+            "piezasPorTienda": 1.7142857142857142,
+            "shareSpring": 0.06065482215831581
+          },
+          {
+            "interno": 5606936,
+            "descripcion": "COLCHON INDIVIDUAL THERAPY",
+            "familia": "THERAPY",
+            "ventas": 390226.48999999993,
+            "piezas": 76,
+            "tiendas": 33,
+            "diasConVenta": 28,
+            "ticketPromedio": 5134.559078947367,
+            "ventasPorTienda": 11825.045151515149,
+            "piezasPorTienda": 2.303030303030303,
+            "shareSpring": 0.05003857966493324
+          },
+          {
+            "interno": 92872487,
+            "descripcion": "COLCHON MATRIMONIAL EVERTON",
+            "familia": "EVERTON",
+            "ventas": 388257.81999999995,
+            "piezas": 29,
+            "tiendas": 15,
+            "diasConVenta": 17,
+            "ticketPromedio": 13388.20068965517,
+            "ventasPorTienda": 25883.854666666663,
+            "piezasPorTienda": 1.9333333333333333,
+            "shareSpring": 0.04978613793390426
+          },
+          {
+            "interno": 58638125,
+            "descripcion": "COLCHON INDIVIDUAL HARLEM",
+            "familia": "HARLEM",
+            "ventas": 350433.6,
+            "piezas": 73,
+            "tiendas": 33,
+            "diasConVenta": 21,
+            "ticketPromedio": 4800.460273972602,
+            "ventasPorTienda": 10619.199999999999,
+            "piezasPorTienda": 2.212121212121212,
+            "shareSpring": 0.044935954017035984
+          },
+          {
+            "interno": 92858967,
+            "descripcion": "COLCHON KING SIZE PALMER",
+            "familia": "PALMER",
+            "ventas": 332195.12000000005,
+            "piezas": 17,
+            "tiendas": 13,
+            "diasConVenta": 13,
+            "ticketPromedio": 19540.88941176471,
+            "ventasPorTienda": 25553.470769230775,
+            "piezasPorTienda": 1.3076923076923077,
+            "shareSpring": 0.04259724135186738
+          },
+          {
+            "interno": 92874574,
+            "descripcion": "COLCHON KING SIZE EVERTON",
+            "familia": "EVERTON",
+            "ventas": 293657.38999999996,
+            "piezas": 18,
+            "tiendas": 12,
+            "diasConVenta": 14,
+            "ticketPromedio": 16314.299444444441,
+            "ventasPorTienda": 24471.44916666666,
+            "piezasPorTienda": 1.5,
+            "shareSpring": 0.03765556434600678
+          }
+        ]
+      },
+      "eficienciaSurtido": {
+        "base": "raw",
+        "updatedAt": "2026-03-13T04:34:40.688Z",
+        "payload": {
+          "altaDistribucionBajaVelocidad": [
+            {
+              "interno": 92885937,
+              "descripcion": "BOX MATRIMONIAL SCANDINAVIAN DAGALI",
+              "familia": "OTROS",
+              "ventas": 64820.88,
+              "piezas": 20,
+              "tiendas": 14,
+              "diasConVenta": 14,
+              "ticketPromedio": 3241.044,
+              "ventasPorTienda": 4630.062857142857,
+              "piezasPorTienda": 1.4285714285714286,
+              "shareSpring": 0.008311954341774896,
+              "segmento": "alta_distribucion_baja_velocidad"
+            }
+          ],
+          "bajaDistribucionAltaVelocidad": [
+            {
+              "interno": 50999483,
+              "descripcion": "JUEGO DE COLCHON Y BOX  QUEEN SIZE HEALTHY",
+              "familia": "OTROS",
+              "ventas": 26221.56,
+              "piezas": 3,
+              "tiendas": 1,
+              "diasConVenta": 2,
+              "ticketPromedio": 8740.52,
+              "ventasPorTienda": 26221.56,
+              "piezasPorTienda": 3,
+              "shareSpring": 0.0033623796759641488,
+              "segmento": "baja_distribucion_alta_velocidad"
+            },
+            {
+              "interno": 92877795,
+              "descripcion": "COLCHON KING SIZE SCANDINAVIAN DAGALI",
+              "familia": "OTROS",
+              "ventas": 77517.03,
+              "piezas": 3,
+              "tiendas": 4,
+              "diasConVenta": 3,
+              "ticketPromedio": 25839.01,
+              "ventasPorTienda": 19379.2575,
+              "piezasPorTienda": 0.75,
+              "shareSpring": 0.009939976348207475,
+              "segmento": "baja_distribucion_alta_velocidad"
+            },
+            {
+              "interno": 92875493,
+              "descripcion": "COLCHON INDIVIDUAL SCANDINAVIAN DAGALI",
+              "familia": "OTROS",
+              "ventas": 88759.28,
+              "piezas": 12,
+              "tiendas": 5,
+              "diasConVenta": 4,
+              "ticketPromedio": 7396.606666666667,
+              "ventasPorTienda": 17751.856,
+              "piezasPorTienda": 2.4,
+              "shareSpring": 0.011381565365493554,
+              "segmento": "baja_distribucion_alta_velocidad"
+            },
+            {
+              "interno": 92858029,
+              "descripcion": "COLCHON INDIVIDUAL PALMER",
+              "familia": "PALMER",
+              "ventas": 70408.37,
+              "piezas": 5,
+              "tiendas": 4,
+              "diasConVenta": 4,
+              "ticketPromedio": 14081.673999999999,
+              "ventasPorTienda": 17602.0925,
+              "piezasPorTienda": 1.25,
+              "shareSpring": 0.009028435848430218,
+              "segmento": "baja_distribucion_alta_velocidad"
+            },
+            {
+              "interno": 92876625,
+              "descripcion": "COLCHON QUEEN SIZE SCANDINAVIAN DAGALI",
+              "familia": "OTROS",
+              "ventas": 85259.18,
+              "piezas": 6,
+              "tiendas": 5,
+              "diasConVenta": 6,
+              "ticketPromedio": 14209.863333333333,
+              "ventasPorTienda": 17051.836,
+              "piezasPorTienda": 1.2,
+              "shareSpring": 0.010932749005832186,
+              "segmento": "baja_distribucion_alta_velocidad"
+            }
+          ]
+        }
+      },
+      "indicePrecio": {
+        "base": "raw",
+        "updatedAt": "2026-03-13T04:34:40.688Z",
+        "payload": {
+          "tiendas": [
+            {
+              "scope": "tienda",
+              "nombre": "TUXTLA GUTIERREZ",
+              "springTicket": 8871.36,
+              "marketTicket": 4099.7495667870035,
+              "leaderTicket": 1848.5735403726705,
+              "indexVsMarket": 2.163878513914335,
+              "indexVsLeader": 4.7990300662918415
+            },
+            {
+              "scope": "tienda",
+              "nombre": "MORELIA ALTOZANO",
+              "springTicket": 13154.744999999999,
+              "marketTicket": 6361.680363636363,
+              "leaderTicket": 6276.254,
+              "indexVsMarket": 2.0678097999379355,
+              "indexVsLeader": 2.0959548482263464
+            },
+            {
+              "scope": "tienda",
+              "nombre": "INTERNET",
+              "springTicket": 6655.434202898552,
+              "marketTicket": 3972.321764354067,
+              "leaderTicket": 2361.5915779283646,
+              "indexVsMarket": 1.6754519391207428,
+              "indexVsLeader": 2.8181986525954805
+            },
+            {
+              "scope": "tienda",
+              "nombre": "PACHUCA OUTLET",
+              "springTicket": 3357.33,
+              "marketTicket": 7880.4712500000005,
+              "leaderTicket": 14689.32,
+              "indexVsMarket": 0.42603162850191223,
+              "indexVsLeader": 0.2285558487390839
+            },
+            {
+              "scope": "tienda",
+              "nombre": "TEPIC",
+              "springTicket": 3616.928571428571,
+              "marketTicket": 8077.1898507462665,
+              "leaderTicket": 7825.595479452053,
+              "indexVsMarket": 0.4477954137842131,
+              "indexVsLeader": 0.4621921208329347
+            },
+            {
+              "scope": "tienda",
+              "nombre": "CANCUN",
+              "springTicket": 13405.925,
+              "marketTicket": 8697.52015625,
+              "leaderTicket": 12900.226666666667,
+              "indexVsMarket": 1.541350265266883,
+              "indexVsLeader": 1.0392007323902317
+            },
+            {
+              "scope": "tienda",
+              "nombre": "COACALCO",
+              "springTicket": 10037.363333333333,
+              "marketTicket": 6601.521714285714,
+              "leaderTicket": 7652.142,
+              "indexVsMarket": 1.5204620643165419,
+              "indexVsLeader": 1.3117063605632688
+            },
+            {
+              "scope": "tienda",
+              "nombre": "TORREON",
+              "springTicket": 6003.942499999999,
+              "marketTicket": 12215.00425531915,
+              "leaderTicket": 16521.965000000004,
+              "indexVsMarket": 0.4915219327398531,
+              "indexVsLeader": 0.36339155179181154
+            },
+            {
+              "scope": "tienda",
+              "nombre": "INTERLOMAS",
+              "springTicket": 4488.860000000001,
+              "marketTicket": 9054.612173913043,
+              "leaderTicket": 9764.639411764705,
+              "indexVsMarket": 0.4957539775069233,
+              "indexVsLeader": 0.45970565944213965
+            },
+            {
+              "scope": "tienda",
+              "nombre": "COATZACOALCOS",
+              "springTicket": 4202.22,
+              "marketTicket": 7498.980153846153,
+              "leaderTicket": 6394.914473684211,
+              "indexVsMarket": 0.5603721991242666,
+              "indexVsLeader": 0.6571190306442105
+            }
+          ],
+          "skus": [
+            {
+              "scope": "sku",
+              "nombre": "COLCHON INDIVIDUAL PALMER",
+              "springTicket": 14081.673999999999,
+              "marketTicket": 4848.922162888973,
+              "leaderTicket": 5609.783210116729,
+              "indexVsMarket": 2.904083325522013,
+              "indexVsLeader": 2.510199320110088
+            },
+            {
+              "scope": "sku",
+              "nombre": "COLCHON INDIVIDUAL ASTON",
+              "springTicket": 11642.973333333333,
+              "marketTicket": 4848.922162888973,
+              "leaderTicket": 5609.783210116729,
+              "indexVsMarket": 2.4011466759442652,
+              "indexVsLeader": 2.075476519722955
+            },
+            {
+              "scope": "sku",
+              "nombre": "COLCHON QUEEN SIZE PALMER",
+              "springTicket": 18331.860833333332,
+              "marketTicket": 8843.614840490798,
+              "leaderTicket": 9063.505726495729,
+              "indexVsMarket": 2.072892269052726,
+              "indexVsLeader": 2.022601561307898
+            },
+            {
+              "scope": "sku",
+              "nombre": "COLCHON INDIVIDUAL HARLEM EXHIBICION",
+              "springTicket": 0,
+              "marketTicket": 4848.922162888973,
+              "leaderTicket": 5609.783210116729,
+              "indexVsMarket": 0,
+              "indexVsLeader": 0
+            },
+            {
+              "scope": "sku",
+              "nombre": "BOX INDIVIDUAL HARLEM EXHIBICION",
+              "springTicket": 0,
+              "marketTicket": 4848.922162888973,
+              "leaderTicket": 5609.783210116729,
+              "indexVsMarket": 0,
+              "indexVsLeader": 0
+            },
+            {
+              "scope": "sku",
+              "nombre": "BOX INDIVIDUAL PERSONALITY EXHIBICION",
+              "springTicket": 0,
+              "marketTicket": 4848.922162888973,
+              "leaderTicket": 5609.783210116729,
+              "indexVsMarket": 0,
+              "indexVsLeader": 0
+            },
+            {
+              "scope": "sku",
+              "nombre": "BOX INDIVIDUAL PALMER EXHI",
+              "springTicket": 0,
+              "marketTicket": 4848.922162888973,
+              "leaderTicket": 5609.783210116729,
+              "indexVsMarket": 0,
+              "indexVsLeader": 0
+            },
+            {
+              "scope": "sku",
+              "nombre": "BOX INDIVIDUAL EVERTON EXHI",
+              "springTicket": 0,
+              "marketTicket": 4848.922162888973,
+              "leaderTicket": 5609.783210116729,
+              "indexVsMarket": 0,
+              "indexVsLeader": 0
+            },
+            {
+              "scope": "sku",
+              "nombre": "BOX INDIVIDUAL SCANDINAVIAN DAGALI EXHI",
+              "springTicket": 0,
+              "marketTicket": 4848.922162888973,
+              "leaderTicket": 5609.783210116729,
+              "indexVsMarket": 0,
+              "indexVsLeader": 0
+            },
+            {
+              "scope": "sku",
+              "nombre": "BOX INDIVIDUAL ASTON  EXHI",
+              "springTicket": 0,
+              "marketTicket": 4848.922162888973,
+              "leaderTicket": 5609.783210116729,
+              "indexVsMarket": 0,
+              "indexVsLeader": 0
+            }
+          ],
+          "familias": [
+            {
+              "scope": "familia",
+              "nombre": "EVERTON",
+              "springTicket": 11015.523595505618,
+              "marketTicket": 11015.523595505618,
+              "leaderTicket": 11015.523595505618,
+              "indexVsMarket": 1,
+              "indexVsLeader": 1
+            },
+            {
+              "scope": "familia",
+              "nombre": "ASTON",
+              "springTicket": 10958.339919999997,
+              "marketTicket": 10958.339919999997,
+              "leaderTicket": 10958.339919999997,
+              "indexVsMarket": 1,
+              "indexVsLeader": 1
+            },
+            {
+              "scope": "familia",
+              "nombre": "PALMER",
+              "springTicket": 10461.748539325848,
+              "marketTicket": 10461.748539325848,
+              "leaderTicket": 10461.748539325848,
+              "indexVsMarket": 1,
+              "indexVsLeader": 1
+            },
+            {
+              "scope": "familia",
+              "nombre": "THERAPY",
+              "springTicket": 6837.8835460992905,
+              "marketTicket": 6837.8835460992905,
+              "leaderTicket": 6837.8835460992905,
+              "indexVsMarket": 1,
+              "indexVsLeader": 1
+            },
+            {
+              "scope": "familia",
+              "nombre": "OTROS",
+              "springTicket": 6378.786588235294,
+              "marketTicket": 6959.8686861313845,
+              "leaderTicket": 6715.041500000003,
+              "indexVsMarket": 0.9165096176233919,
+              "indexVsLeader": 0.949925117847044
+            },
+            {
+              "scope": "familia",
+              "nombre": "HARLEM",
+              "springTicket": 5616.475421686747,
+              "marketTicket": 5616.475421686747,
+              "leaderTicket": 5616.475421686747,
+              "indexVsMarket": 1,
+              "indexVsLeader": 1
+            },
+            {
+              "scope": "familia",
+              "nombre": "PERSONALITY",
+              "springTicket": 5408.365379310346,
+              "marketTicket": 5408.365379310346,
+              "leaderTicket": 5408.365379310346,
+              "indexVsMarket": 1,
+              "indexVsLeader": 1
+            }
+          ]
+        }
+      },
+      "mixPrecio": {
+        "base": "raw",
+        "updatedAt": "2026-03-13T04:34:40.688Z",
+        "payload": [
+          {
+            "label": "<= $4,818",
+            "min": 0,
+            "max": 4818.1925,
+            "ventas": 1031847.6800000002,
+            "piezas": 291,
+            "shareVentas": 0.13004628141857494,
+            "sharePiezas": 0.27349624060150374
+          },
+          {
+            "label": "$4,818 - $8,435",
+            "min": 4818.1925,
+            "max": 8434.75,
+            "ventas": 2963011.969999998,
+            "piezas": 478,
+            "shareVentas": 0.3734356300507705,
+            "sharePiezas": 0.4492481203007519
+          },
+          {
+            "label": "$8,435 - $11,963",
+            "min": 8434.75,
+            "max": 11962.8,
+            "ventas": 1342457.8899999994,
+            "piezas": 136,
+            "shareVentas": 0.1691932442543518,
+            "sharePiezas": 0.12781954887218044
+          },
+          {
+            "label": "> $11,963",
+            "min": 11962.8,
+            "max": null,
+            "ventas": 2597147.5499999993,
+            "piezas": 159,
+            "shareVentas": 0.3273248442763009,
+            "sharePiezas": 0.14943609022556392
+          }
+        ]
+      },
+      "consistenciaDiaria": {
+        "base": "raw",
+        "updatedAt": "2026-03-13T04:34:40.688Z",
+        "payload": {
+          "top3Share": 0.16092979869961155,
+          "coefficientOfVariation": 0.3858150145755565,
+          "bestDay": {
+            "dia": 5,
+            "ventas": 460140.45,
+            "piezas": 65,
+            "ticketPromedio": 7079.083846153846
+          },
+          "worstDay": {
+            "dia": 1,
+            "ventas": 35809.15,
+            "piezas": 5,
+            "ticketPromedio": 7161.83
+          }
+        }
+      },
+      "riesgoDependencia": {
+        "base": "raw",
+        "updatedAt": "2026-03-13T04:34:40.688Z",
+        "payload": {
+          "topSkuShare": 0.10229997938119599,
+          "topFamilyShare": 0.24726294342090724,
+          "stores": [
+            {
+              "tienda": "PLAYA DEL CARMEN",
+              "ventas": 232.77000000000044,
+              "topSku": "COLCHON MATRIMONIAL HARLEM",
+              "topSkuShare": 29.16264982600845,
+              "topFamily": "HARLEM",
+              "topFamilyShare": 29.16264982600845
+            },
+            {
+              "tienda": "TORREON",
+              "ventas": 3844.2199999999993,
+              "topSku": "COLCHON INDIVIDUAL HARLEM",
+              "topSkuShare": 4.449781750264033,
+              "topFamily": "HARLEM",
+              "topFamilyShare": 6.247241312932142
+            },
+            {
+              "tienda": "COATZACOALCOS",
+              "ventas": 6776.5599999999995,
+              "topSku": "COLCHON MATRIMONIAL HARLEM",
+              "topSkuShare": 1.8603303150861203,
+              "topFamily": "HARLEM",
+              "topFamilyShare": 1.8603303150861203
+            },
+            {
+              "tienda": "PASEO LOS MOCHIS",
+              "ventas": 30653.64,
+              "topSku": "COLCHON KING SIZE THERAPY",
+              "topSkuShare": 0.8724849642652553,
+              "topFamily": "THERAPY",
+              "topFamilyShare": 1.4012120583395642
+            },
+            {
+              "tienda": "TUXTLA GUTIERREZ",
+              "ventas": 8787.85,
+              "topSku": "COLCHON KING SIZE THERAPY",
+              "topSkuShare": 1.2009433479178637,
+              "topFamily": "THERAPY",
+              "topFamilyShare": 1.2009433479178637
+            },
+            {
+              "tienda": "LINDAVISTA",
+              "ventas": 13516.469999999998,
+              "topSku": "COLCHON MATRIMONIAL THERAPY",
+              "topSkuShare": 1.027207547532751,
+              "topFamily": "THERAPY",
+              "topFamilyShare": 1.027207547532751
+            },
+            {
+              "tienda": "COACALCO",
+              "ventas": 30112.09,
+              "topSku": "COLCHON MATRIMONIAL EVERTON",
+              "topSkuShare": 0.877356237976175,
+              "topFamily": "EVERTON",
+              "topFamilyShare": 1
+            },
+            {
+              "tienda": "VIA VALLEJO",
+              "ventas": 16893.059999999998,
+              "topSku": "COLCHON MATRIMONIAL THERAPY",
+              "topSkuShare": 0.7555055152826072,
+              "topFamily": "THERAPY",
+              "topFamilyShare": 1
+            },
+            {
+              "tienda": "CUATRO CAMINOS",
+              "ventas": 5294.7,
+              "topSku": "COLCHON INDIVIDUAL HARLEM",
+              "topSkuShare": 1,
+              "topFamily": "HARLEM",
+              "topFamilyShare": 1
+            },
+            {
+              "tienda": "GUADALAJARA CENTRO",
+              "ventas": 13419.48,
+              "topSku": "COLCHON MATRIMONIAL PERSONALITY",
+              "topSkuShare": 1,
+              "topFamily": "PERSONALITY",
+              "topFamilyShare": 1
+            }
+          ]
+        }
+      },
+      "mapaOportunidad": {
+        "base": "raw",
+        "updatedAt": "2026-03-13T04:34:40.688Z",
+        "payload": [
+          {
+            "tienda": "PACHUCA PLAZA Q",
+            "lat": 20.1165,
+            "lon": -98.7414,
+            "ventas": 515403.11999999994,
+            "piezas": 63,
+            "ticketPromedio": 8181.0019047619035,
+            "segment": "standard",
+            "shareDentroTienda": 0.2783283802359987
+          },
+          {
+            "tienda": "MORELIA LAS AMERICAS",
+            "lat": 19.6787,
+            "lon": -101.1884,
+            "ventas": 430689.12,
+            "piezas": 61,
+            "ticketPromedio": 7060.47737704918,
+            "segment": "standard",
+            "shareDentroTienda": 0.2645746423328267
+          },
+          {
+            "tienda": "PERISUR",
+            "lat": 19.304,
+            "lon": -99.19,
+            "ventas": 383145.39,
+            "piezas": 56,
+            "ticketPromedio": 6841.881964285714,
+            "segment": "opportunity",
+            "opportunity": 398590.29132328695,
+            "shareDentroTienda": 0.12006919001772572
+          },
+          {
+            "tienda": "LEON PLAZA",
+            "lat": 21.122,
+            "lon": -101.683,
+            "ventas": 381018.97000000003,
+            "piezas": 45,
+            "ticketPromedio": 8467.088222222223,
+            "segment": "standard",
+            "shareDentroTienda": 0.24900074473656433
+          },
+          {
+            "tienda": "SATELITE",
+            "lat": 19.513,
+            "lon": -99.236,
+            "ventas": 377612.44999999995,
+            "piezas": 39,
+            "ticketPromedio": 9682.370512820511,
+            "segment": "standard",
+            "shareDentroTienda": 0.163371854304246
+          },
+          {
+            "tienda": "TANGAMANGA",
+            "lat": 22.1332,
+            "lon": -101.0069,
+            "ventas": 344767.4100000001,
+            "piezas": 48,
+            "ticketPromedio": 7182.654375000002,
+            "segment": "standard",
+            "shareDentroTienda": 0.2477726311387305
+          },
+          {
+            "tienda": "QUERETARO PLAZA",
+            "lat": 20.5888,
+            "lon": -100.3899,
+            "ventas": 324307.17000000004,
+            "piezas": 39,
+            "ticketPromedio": 8315.568461538463,
+            "segment": "standard",
+            "shareDentroTienda": 0.24778638550499268
+          },
+          {
+            "tienda": "PASEO DURANGO",
+            "lat": 24.0277,
+            "lon": -104.6532,
+            "ventas": 313474.84,
+            "piezas": 37,
+            "ticketPromedio": 8472.292972972973,
+            "segment": "standard",
+            "shareDentroTienda": 0.2766561503003668
+          },
+          {
+            "tienda": "CUAUTITLAN",
+            "lat": 19.7055,
+            "lon": -99.1666,
+            "ventas": 310184.01,
+            "piezas": 42,
+            "ticketPromedio": 7385.333571428571,
+            "segment": "standard",
+            "shareDentroTienda": 0.16856026699931517
+          },
+          {
+            "tienda": "TEZONTLE",
+            "lat": 19.3894,
+            "lon": -99.0891,
+            "ventas": 239571.63000000003,
+            "piezas": 30,
+            "ticketPromedio": 7985.721000000001,
+            "segment": "standard",
+            "shareDentroTienda": 0.12526272602233787
+          },
+          {
+            "tienda": "COAPA",
+            "lat": 19.3084,
+            "lon": -99.1225,
+            "ventas": 238081.58999999997,
+            "piezas": 31,
+            "ticketPromedio": 7680.05129032258,
+            "segment": "standard",
+            "shareDentroTienda": 0.15757075149521785
+          },
+          {
+            "tienda": "COLIMA ZENTRALIA",
+            "lat": 19.2439,
+            "lon": -103.7274,
+            "ventas": 172050.80000000002,
+            "piezas": 18,
+            "ticketPromedio": 9558.37777777778,
+            "segment": "standard",
+            "shareDentroTienda": 0.21216481413918445
+          },
+          {
+            "tienda": "SANTA FE",
+            "lat": 19.361,
+            "lon": -99.2613,
+            "ventas": 155943.08,
+            "piezas": 20,
+            "ticketPromedio": 7797.1539999999995,
+            "segment": "standard",
+            "shareDentroTienda": 0.1440659768862835
+          },
+          {
+            "tienda": "ANGELOPOLIS",
+            "lat": 19.0155,
+            "lon": -98.2417,
+            "ventas": 148318.05000000002,
+            "piezas": 19,
+            "ticketPromedio": 7806.213157894737,
+            "segment": "standard",
+            "shareDentroTienda": 0.11768183727312558
+          },
+          {
+            "tienda": "TLALNEPANTLA",
+            "lat": 19.5387,
+            "lon": -99.1943,
+            "ventas": 138220.67,
+            "piezas": 14,
+            "ticketPromedio": 9872.905,
+            "segment": "standard",
+            "shareDentroTienda": 0.142192433121607
+          },
+          {
+            "tienda": "INSURGENTES",
+            "lat": 19.3925,
+            "lon": -99.1716,
+            "ventas": 137913.16,
+            "piezas": 20,
+            "ticketPromedio": 6895.658,
+            "segment": "standard",
+            "shareDentroTienda": 0.20584709369698423
+          },
+          {
+            "tienda": "UNIVERSIDAD",
+            "lat": 19.3328,
+            "lon": -99.1857,
+            "ventas": 134911.15000000002,
+            "piezas": 20,
+            "ticketPromedio": 6745.557500000001,
+            "segment": "opportunity",
+            "opportunity": 308557.2604559565,
+            "shareDentroTienda": 0.07452690169794329
+          },
+          {
+            "tienda": "OAXACA PLAZA",
+            "lat": 17.0732,
+            "lon": -96.7266,
+            "ventas": 84293.49999999999,
+            "piezas": 10,
+            "ticketPromedio": 8429.349999999999,
+            "segment": "opportunity",
+            "opportunity": 344397.2042636907,
+            "shareDentroTienda": 0.04817014261141781
+          },
+          {
+            "tienda": "CULIACAN GALERIAS",
+            "lat": 24.8007,
+            "lon": -107.4188,
+            "ventas": 65710.81000000001,
+            "piezas": 6,
+            "ticketPromedio": 10951.801666666668,
+            "segment": "standard",
+            "shareDentroTienda": 0.20440013220055608
+          },
+          {
+            "tienda": "FORJADORES",
+            "lat": 19.0797,
+            "lon": -98.2364,
+            "ventas": 53633.92999999999,
+            "piezas": 9,
+            "ticketPromedio": 5959.325555555555,
+            "segment": "standard",
+            "shareDentroTienda": 0.2632536900795087
+          }
+        ]
+      }
+    },
+    "comercialLimpia": {
+      "distribucion": {
+        "base": "comercial_limpia",
+        "updatedAt": "2026-03-13T04:34:40.688Z",
+        "payload": {
+          "distribucionNumerica": 0.84375,
+          "distribucionPonderada": 0.9171487487009592,
+          "springStores": 81,
+          "marketStores": 96,
+          "coveredMarketSales": 80091424.88999997,
+          "totalMarketSales": 87326537.81999998
+        }
+      },
+      "velocidadProveedores": {
+        "base": "comercial_limpia",
+        "updatedAt": "2026-03-13T04:34:40.688Z",
+        "payload": [
+          {
+            "proveedor": "ARTABAN THERAPEDIC SA DE CV",
+            "ventas": 20898822.360000044,
+            "piezas": 2545,
+            "tiendasActivas": 95,
+            "skusActivos": 80,
+            "ventasPorTienda": 219987.60378947415,
+            "piezasPorTienda": 26.789473684210527,
+            "ventasPorSku": 261235.27950000056,
+            "piezasPorSku": 31.8125
+          },
+          {
+            "proveedor": "INDUSTRIAS DK SA DE CV",
+            "ventas": 20200877.500000045,
+            "piezas": 2351,
+            "tiendasActivas": 94,
+            "skusActivos": 91,
+            "ventasPorTienda": 214902.95212766004,
+            "piezasPorTienda": 25.01063829787234,
+            "ventasPorSku": 221987.6648351653,
+            "piezasPorSku": 25.835164835164836
+          },
+          {
+            "proveedor": "TEMPUR SEALY MEXICO S DE RL DE CV",
+            "ventas": 18083719.709999997,
+            "piezas": 1357,
+            "tiendasActivas": 85,
+            "skusActivos": 59,
+            "ventasPorTienda": 212749.64364705878,
+            "piezasPorTienda": 15.964705882352941,
+            "ventasPorSku": 306503.72389830503,
+            "piezasPorSku": 23
+          },
+          {
+            "proveedor": "SISTEMAS DE DESCANSO LORD SA DE CV",
+            "ventas": 8793736.660000002,
+            "piezas": 2056,
+            "tiendasActivas": 86,
+            "skusActivos": 56,
+            "ventasPorTienda": 102252.75186046514,
+            "piezasPorTienda": 23.906976744186046,
+            "ventasPorSku": 157031.01178571433,
+            "piezasPorSku": 36.714285714285715
+          },
+          {
+            "proveedor": "SPRING AIR MEXICO SA DE CV",
+            "ventas": 7934464.980000013,
+            "piezas": 1058,
+            "tiendasActivas": 81,
+            "skusActivos": 50,
+            "ventasPorTienda": 97956.35777777793,
+            "piezasPorTienda": 13.061728395061728,
+            "ventasPorSku": 158689.29960000026,
+            "piezasPorSku": 21.16
+          },
+          {
+            "proveedor": "KSMV CAPITAL SAPI DE CV",
+            "ventas": 5138409.619999999,
+            "piezas": 580,
+            "tiendasActivas": 75,
+            "skusActivos": 47,
+            "ventasPorTienda": 68512.12826666665,
+            "piezasPorTienda": 7.733333333333333,
+            "ventasPorSku": 109327.86425531913,
+            "piezasPorSku": 12.340425531914894
+          },
+          {
+            "proveedor": "COLCHONES WENDY SA DE CV",
+            "ventas": 3999818.4099999964,
+            "piezas": 505,
+            "tiendasActivas": 55,
+            "skusActivos": 27,
+            "ventasPorTienda": 72723.97109090902,
+            "piezasPorTienda": 9.181818181818182,
+            "ventasPorSku": 148141.42259259245,
+            "piezasPorSku": 18.703703703703702
+          },
+          {
+            "proveedor": "VITTORIO BENZI DE MEXICO SA DE CV",
+            "ventas": 2267559.59,
+            "piezas": 432,
+            "tiendasActivas": 27,
+            "skusActivos": 50,
+            "ventasPorTienda": 83983.68851851851,
+            "piezasPorTienda": 16,
+            "ventasPorSku": 45351.1918,
+            "piezasPorSku": 8.64
+          },
+          {
+            "proveedor": "SOGNERO DESCANSO S DE RL DE CV",
+            "ventas": 9128.99,
+            "piezas": 2,
+            "tiendasActivas": 2,
+            "skusActivos": 2,
+            "ventasPorTienda": 4564.495,
+            "piezasPorTienda": 1,
+            "ventasPorSku": 4564.495,
+            "piezasPorSku": 1
+          }
+        ]
+      },
+      "oportunidadTiendas": {
+        "base": "comercial_limpia",
+        "updatedAt": "2026-03-13T04:34:40.688Z",
+        "payload": {
+          "shareObjetivo": 0.24442630883737695,
+          "marketMedian": 754590.4249999998,
+          "benchmarkStores": [
+            "PASEO DURANGO",
+            "PACHUCA PLAZA Q",
+            "FORJADORES",
+            "MORELIA LAS AMERICAS",
+            "LEON PLAZA",
+            "QUERETARO PLAZA",
+            "TANGAMANGA",
+            "COLIMA ZENTRALIA",
+            "INSURGENTES",
+            "CORDOBA"
+          ],
+          "benchmarkRows": [
+            {
+              "tienda": "PASEO DURANGO",
+              "tiendaId": 243,
+              "ventasMercado": 1133084.6600000001,
+              "ventasSpring": 313474.84,
+              "shareActual": 0.2766561503003668,
+              "shareObjetivo": 0.24442630883737695,
+              "gapShare": 0,
+              "oportunidadVenta": 0,
+              "lat": 24.0277,
+              "lon": -104.6532
+            },
+            {
+              "tienda": "PACHUCA PLAZA Q",
+              "tiendaId": 233,
+              "ventasMercado": 1891598.8399999996,
+              "ventasSpring": 515403.11999999994,
+              "shareActual": 0.2724695686533621,
+              "shareObjetivo": 0.24442630883737695,
+              "gapShare": 0,
+              "oportunidadVenta": 0,
+              "lat": 20.1165,
+              "lon": -98.7414
+            },
+            {
+              "tienda": "FORJADORES",
+              "tiendaId": 181,
+              "ventasMercado": 203736.19,
+              "ventasSpring": 53633.92999999999,
+              "shareActual": 0.2632518552545819,
+              "shareObjetivo": 0.24442630883737695,
+              "gapShare": 0,
+              "oportunidadVenta": 0,
+              "lat": 19.0797,
+              "lon": -98.2364
+            },
+            {
+              "tienda": "MORELIA LAS AMERICAS",
+              "tiendaId": 236,
+              "ventasMercado": 1653679.8899999997,
+              "ventasSpring": 430689.12,
+              "shareActual": 0.2604428599539903,
+              "shareObjetivo": 0.24442630883737695,
+              "gapShare": 0,
+              "oportunidadVenta": 0,
+              "lat": 19.6787,
+              "lon": -101.1884
+            },
+            {
+              "tienda": "LEON PLAZA",
+              "tiendaId": 211,
+              "ventasMercado": 1540619.1600000004,
+              "ventasSpring": 391446.04,
+              "shareActual": 0.25408358545923826,
+              "shareObjetivo": 0.24442630883737695,
+              "gapShare": 0,
+              "oportunidadVenta": 0,
+              "lat": 21.122,
+              "lon": -101.683
+            },
+            {
+              "tienda": "QUERETARO PLAZA",
+              "tiendaId": 224,
+              "ventasMercado": 1320045.04,
+              "ventasSpring": 333746,
+              "shareActual": 0.2528292519473426,
+              "shareObjetivo": 0.24442630883737695,
+              "gapShare": 0,
+              "oportunidadVenta": 0,
+              "lat": 20.5888,
+              "lon": -100.3899
+            },
+            {
+              "tienda": "TANGAMANGA",
+              "tiendaId": 206,
+              "ventasMercado": 1395829.9799999995,
+              "ventasSpring": 349130.51000000007,
+              "shareActual": 0.2501239513425555,
+              "shareObjetivo": 0.24442630883737695,
+              "gapShare": 0,
+              "oportunidadVenta": 0,
+              "lat": 22.1332,
+              "lon": -101.0069
+            },
+            {
+              "tienda": "COLIMA ZENTRALIA",
+              "tiendaId": 244,
+              "ventasMercado": 810929.9,
+              "ventasSpring": 172050.80000000002,
+              "shareActual": 0.21216482460444486,
+              "shareObjetivo": 0.24442630883737695,
+              "gapShare": 0.0322614842329321,
+              "oportunidadVenta": 26161.802182863205,
+              "lat": 19.2439,
+              "lon": -103.7274
+            },
+            {
+              "tienda": "INSURGENTES",
+              "tiendaId": 101,
+              "ventasMercado": 673568.7900000003,
+              "ventasSpring": 137913.16,
+              "shareActual": 0.2047499261359778,
+              "shareObjetivo": 0.24442630883737695,
+              "gapShare": 0.03967638270139914,
+              "oportunidadVenta": 26724.773087758367,
+              "lat": 19.3925,
+              "lon": -99.1716
+            },
+            {
+              "tienda": "CORDOBA",
+              "tiendaId": 317,
+              "ventasMercado": 548139.8499999999,
+              "ventasSpring": 108252.75,
+              "shareActual": 0.19749111472190906,
+              "shareObjetivo": 0.24442630883737695,
+              "gapShare": 0.0469351941154679,
+              "oportunidadVenta": 25727.050262173434
+            }
+          ],
+          "rows": [
+            {
+              "tienda": "INTERNET",
+              "tiendaId": 570,
+              "ventasMercado": 6622499.570000001,
+              "ventasSpring": 459224.9600000001,
+              "shareActual": 0.06934314682031757,
+              "shareObjetivo": 0.24442630883737695,
+              "gapShare": 0.17508316201705937,
+              "oportunidadVenta": 1159488.1651722165
+            },
+            {
+              "tienda": "NEZAHUALCOYOTL",
+              "tiendaId": 119,
+              "ventasMercado": 1839509.38,
+              "ventasSpring": 46204.16,
+              "shareActual": 0.02511765392574405,
+              "shareObjetivo": 0.24442630883737695,
+              "gapShare": 0.2193086549116329,
+              "oportunidadVenta": 403420.3278251318
+            },
+            {
+              "tienda": "PERISUR",
+              "tiendaId": 105,
+              "ventasMercado": 3215971.8700000006,
+              "ventasSpring": 383145.39,
+              "shareActual": 0.11913829022391292,
+              "shareObjetivo": 0.24442630883737695,
+              "gapShare": 0.12528801861346403,
+              "oportunidadVenta": 402922.74350893684,
+              "lat": 19.304,
+              "lon": -99.19
+            },
+            {
+              "tienda": "OAXACA PLAZA",
+              "tiendaId": 214,
+              "ventasMercado": 1749911.7399999998,
+              "ventasSpring": 84293.49999999999,
+              "shareActual": 0.04817014371250518,
+              "shareObjetivo": 0.24442630883737695,
+              "gapShare": 0.19625616512487176,
+              "oportunidadVenta": 343430.96739939164,
+              "lat": 17.0732,
+              "lon": -96.7266
+            },
+            {
+              "tienda": "ANTENAS TLAHUAC",
+              "tiendaId": 258,
+              "ventasMercado": 1481166.4100000001,
+              "ventasSpring": 25400.499999999996,
+              "shareActual": 0.01714898463029552,
+              "shareObjetivo": 0.24442630883737695,
+              "gapShare": 0.22727732420708144,
+              "oportunidadVenta": 336635.53837020893
+            },
+            {
+              "tienda": "UNIVERSIDAD",
+              "tiendaId": 103,
+              "ventasMercado": 1845372.119999999,
+              "ventasSpring": 134911.15000000002,
+              "shareActual": 0.07310782933037922,
+              "shareObjetivo": 0.24442630883737695,
+              "gapShare": 0.17131847950699775,
+              "oportunidadVenta": 316146.3457230048,
+              "lat": 19.3328,
+              "lon": -99.1857
+            },
+            {
+              "tienda": "MONTERREY GALERIAS",
+              "tiendaId": 117,
+              "ventasMercado": 1274322.8799999997,
+              "ventasSpring": 13997.16,
+              "shareActual": 0.010983998027250365,
+              "shareObjetivo": 0.24442630883737695,
+              "gapShare": 0.2334423108101266,
+              "oportunidadVenta": 297480.8778254156
+            },
+            {
+              "tienda": "MONTERREY ANAHUAC",
+              "tiendaId": 113,
+              "ventasMercado": 1154537.74,
+              "ventasSpring": 0,
+              "shareActual": 0,
+              "shareObjetivo": 0.24442630883737695,
+              "gapShare": 0.24442630883737695,
+              "oportunidadVenta": 282199.3982016472
+            },
+            {
+              "tienda": "BUENAVISTA",
+              "tiendaId": 122,
+              "ventasMercado": 1377354.8399999994,
+              "ventasSpring": 71613.75,
+              "shareActual": 0.051993682325173395,
+              "shareObjetivo": 0.24442630883737695,
+              "gapShare": 0.19243262651220355,
+              "oportunidadVenta": 265048.0095004958
+            },
+            {
+              "tienda": "ECATEPEC",
+              "tiendaId": 115,
+              "ventasMercado": 1236546.35,
+              "ventasSpring": 38950.880000000005,
+              "shareActual": 0.03149973310745691,
+              "shareObjetivo": 0.24442630883737695,
+              "gapShare": 0.21292657572992005,
+              "oportunidadVenta": 263293.58003683126
+            }
+          ]
+        }
+      },
+      "tiendasBlancas": {
+        "base": "comercial_limpia",
+        "updatedAt": "2026-03-13T04:34:40.688Z",
+        "payload": {
+          "shareThreshold": 0.03,
+          "rows": [
+            {
+              "tienda": "NEZAHUALCOYOTL",
+              "tiendaId": 119,
+              "ventasMercado": 1839509.38,
+              "ventasSpring": 46204.16,
+              "shareActual": 0.02511765392574405,
+              "shareObjetivo": 0.24442630883737695,
+              "gapShare": 0.2193086549116329,
+              "oportunidadVenta": 403420.3278251318
+            },
+            {
+              "tienda": "ANTENAS TLAHUAC",
+              "tiendaId": 258,
+              "ventasMercado": 1481166.4100000001,
+              "ventasSpring": 25400.499999999996,
+              "shareActual": 0.01714898463029552,
+              "shareObjetivo": 0.24442630883737695,
+              "gapShare": 0.22727732420708144,
+              "oportunidadVenta": 336635.53837020893
+            },
+            {
+              "tienda": "MONTERREY GALERIAS",
+              "tiendaId": 117,
+              "ventasMercado": 1274322.8799999997,
+              "ventasSpring": 13997.16,
+              "shareActual": 0.010983998027250365,
+              "shareObjetivo": 0.24442630883737695,
+              "gapShare": 0.2334423108101266,
+              "oportunidadVenta": 297480.8778254156
+            },
+            {
+              "tienda": "MONTERREY ANAHUAC",
+              "tiendaId": 113,
+              "ventasMercado": 1154537.74,
+              "ventasSpring": 0,
+              "shareActual": 0,
+              "shareObjetivo": 0.24442630883737695,
+              "gapShare": 0.24442630883737695,
+              "oportunidadVenta": 282199.3982016472
+            },
+            {
+              "tienda": "TUXTLA GUTIERREZ",
+              "tiendaId": 229,
+              "ventasMercado": 1129471.6700000004,
+              "ventasSpring": 17742.72,
+              "shareActual": 0.015708866783706043,
+              "shareObjetivo": 0.24442630883737695,
+              "gapShare": 0.22871744205367092,
+              "oportunidadVenta": 258329.871234488
+            },
+            {
+              "tienda": "LINDAVISTA",
+              "tiendaId": 106,
+              "ventasMercado": 1166176.48,
+              "ventasSpring": 28100.19,
+              "shareActual": 0.024096001318771237,
+              "shareObjetivo": 0.24442630883737695,
+              "gapShare": 0.22033030751860572,
+              "oportunidadVenta": 256944.02245936514
+            },
+            {
+              "tienda": "COACALCO COSMOPOL",
+              "tiendaId": 125,
+              "ventasMercado": 1110335.9599999997,
+              "ventasSpring": 32893.86,
+              "shareActual": 0.02962514156526103,
+              "shareObjetivo": 0.24442630883737695,
+              "gapShare": 0.21480116727211593,
+              "oportunidadVenta": 238501.46027220535
+            },
+            {
+              "tienda": "GUADALAJARA CENTRO",
+              "tiendaId": 202,
+              "ventasMercado": 1024917.8399999997,
+              "ventasSpring": 13419.48,
+              "shareActual": 0.013093225111585532,
+              "shareObjetivo": 0.24442630883737695,
+              "gapShare": 0.23133308372579142,
+              "oportunidadVenta": 237097.40449277722
+            },
+            {
+              "tienda": "COATZACOALCOS",
+              "tiendaId": 228,
+              "ventasMercado": 974866.9999999998,
+              "ventasSpring": 12606.64,
+              "shareActual": 0.012931651189341729,
+              "shareObjetivo": 0.24442630883737695,
+              "gapShare": 0.23149465764803523,
+              "oportunidadVenta": 225676.50241736713
+            },
+            {
+              "tienda": "IRAPUATO",
+              "tiendaId": 304,
+              "ventasMercado": 893434.0700000003,
+              "ventasSpring": 0,
+              "shareActual": 0,
+              "shareObjetivo": 0.24442630883737695,
+              "gapShare": 0.24442630883737695,
+              "oportunidadVenta": 218378.79191965473
+            }
+          ]
+        }
+      },
+      "concentracionPortafolio": {
+        "base": "comercial_limpia",
+        "updatedAt": "2026-03-13T04:34:40.688Z",
+        "payload": {
+          "top5SkusShare": 0.36505667455854035,
+          "top10SkusShare": 0.5862146775774152,
+          "longTailSkusShare": 0.4137853224225848,
+          "top5StoresShare": 0.2747392086920518,
+          "top10StoresShare": 0.48699647042868344,
+          "longTailStoresShare": 0.5130035295713166
+        }
+      },
+      "productividadSku": {
+        "base": "comercial_limpia",
+        "updatedAt": "2026-03-13T04:34:40.688Z",
+        "payload": [
+          {
+            "interno": 5607059,
+            "descripcion": "COLCHON MATRIMONIAL THERAPY",
+            "familia": "THERAPY",
+            "ventas": 797787.67,
+            "piezas": 121,
+            "tiendas": 46,
+            "diasConVenta": 28,
+            "ticketPromedio": 6593.286528925621,
+            "ventasPorTienda": 17343.210217391304,
+            "piezasPorTienda": 2.630434782608696,
+            "shareSpring": 0.1005471285097283
+          },
+          {
+            "interno": 58666514,
+            "descripcion": "COLCHON MATRIMONIAL HARLEM",
+            "familia": "HARLEM",
+            "ventas": 639023.7099999997,
+            "piezas": 109,
+            "tiendas": 39,
+            "diasConVenta": 28,
+            "ticketPromedio": 5862.6028440366945,
+            "ventasPorTienda": 16385.223333333328,
+            "piezasPorTienda": 2.7948717948717947,
+            "shareSpring": 0.08053771887717107
+          },
+          {
+            "interno": 92880576,
+            "descripcion": "COLCHON KING SIZE ASTON",
+            "familia": "ASTON",
+            "ventas": 494840.27999999997,
+            "piezas": 35,
+            "tiendas": 23,
+            "diasConVenta": 18,
+            "ticketPromedio": 14138.293714285714,
+            "ventasPorTienda": 21514.794782608693,
+            "piezasPorTienda": 1.5217391304347827,
+            "shareSpring": 0.06236592905095904
+          },
+          {
+            "interno": 5607299,
+            "descripcion": "COLCHON KING SIZE THERAPY",
+            "familia": "THERAPY",
+            "ventas": 492010.35,
+            "piezas": 53,
+            "tiendas": 23,
+            "diasConVenta": 25,
+            "ticketPromedio": 9283.214150943395,
+            "ventasPorTienda": 21391.754347826085,
+            "piezasPorTienda": 2.3043478260869565,
+            "shareSpring": 0.062009266061440124
+          },
+          {
+            "interno": 92878909,
+            "descripcion": "COLCHON MATRIMONAL ASTON",
+            "familia": "ASTON",
+            "ventas": 472867.39,
+            "piezas": 36,
+            "tiendas": 20,
+            "diasConVenta": 19,
+            "ticketPromedio": 13135.205277777779,
+            "ventasPorTienda": 23643.3695,
+            "piezasPorTienda": 1.8,
+            "shareSpring": 0.05959663205924179
+          },
+          {
+            "interno": 5606936,
+            "descripcion": "COLCHON INDIVIDUAL THERAPY",
+            "familia": "THERAPY",
+            "ventas": 390226.48999999993,
+            "piezas": 76,
+            "tiendas": 33,
+            "diasConVenta": 28,
+            "ticketPromedio": 5134.559078947367,
+            "ventasPorTienda": 11825.045151515149,
+            "piezasPorTienda": 2.303030303030303,
+            "shareSpring": 0.049181197596009724
+          },
+          {
+            "interno": 92872487,
+            "descripcion": "COLCHON MATRIMONIAL EVERTON",
+            "familia": "EVERTON",
+            "ventas": 388257.82999999996,
+            "piezas": 29,
+            "tiendas": 15,
+            "diasConVenta": 17,
+            "ticketPromedio": 13388.201034482758,
+            "ventasPorTienda": 25883.85533333333,
+            "piezasPorTienda": 1.9333333333333333,
+            "shareSpring": 0.048933082568095136
+          },
+          {
+            "interno": 58638125,
+            "descripcion": "COLCHON INDIVIDUAL HARLEM",
+            "familia": "HARLEM",
+            "ventas": 350433.6,
+            "piezas": 73,
+            "tiendas": 33,
+            "diasConVenta": 21,
+            "ticketPromedio": 4800.460273972602,
+            "ventasPorTienda": 10619.199999999999,
+            "piezasPorTienda": 2.212121212121212,
+            "shareSpring": 0.044166002481997146
+          },
+          {
+            "interno": 92858967,
+            "descripcion": "COLCHON KING SIZE PALMER",
+            "familia": "PALMER",
+            "ventas": 332195.12000000005,
+            "piezas": 17,
+            "tiendas": 13,
+            "diasConVenta": 13,
+            "ticketPromedio": 19540.88941176471,
+            "ventasPorTienda": 25553.470769230775,
+            "piezasPorTienda": 1.3076923076923077,
+            "shareSpring": 0.04186736230323617
+          },
+          {
+            "interno": 92874574,
+            "descripcion": "COLCHON KING SIZE EVERTON",
+            "familia": "EVERTON",
+            "ventas": 293657.38999999996,
+            "piezas": 18,
+            "tiendas": 12,
+            "diasConVenta": 14,
+            "ticketPromedio": 16314.299444444441,
+            "ventasPorTienda": 24471.44916666666,
+            "piezasPorTienda": 1.5,
+            "shareSpring": 0.03701035806953672
+          }
+        ]
+      },
+      "eficienciaSurtido": {
+        "base": "comercial_limpia",
+        "updatedAt": "2026-03-13T04:34:40.688Z",
+        "payload": {
+          "altaDistribucionBajaVelocidad": [
+            {
+              "interno": 92885937,
+              "descripcion": "BOX MATRIMONIAL SCANDINAVIAN DAGALI",
+              "familia": "OTROS",
+              "ventas": 64820.88,
+              "piezas": 20,
+              "tiendas": 14,
+              "diasConVenta": 14,
+              "ticketPromedio": 3241.044,
+              "ventasPorTienda": 4630.062857142857,
+              "piezasPorTienda": 1.4285714285714286,
+              "shareSpring": 0.008169533820287893,
+              "segmento": "alta_distribucion_baja_velocidad"
+            }
+          ],
+          "bajaDistribucionAltaVelocidad": [
+            {
+              "interno": 50999483,
+              "descripcion": "JUEGO DE COLCHON Y BOX  QUEEN SIZE HEALTHY",
+              "familia": "OTROS",
+              "ventas": 26221.56,
+              "piezas": 3,
+              "tiendas": 1,
+              "diasConVenta": 2,
+              "ticketPromedio": 8740.52,
+              "ventasPorTienda": 26221.56,
+              "piezasPorTienda": 3,
+              "shareSpring": 0.003304767248465436,
+              "segmento": "baja_distribucion_alta_velocidad"
+            },
+            {
+              "interno": 92877795,
+              "descripcion": "COLCHON KING SIZE SCANDINAVIAN DAGALI",
+              "familia": "OTROS",
+              "ventas": 86471.9,
+              "piezas": 4,
+              "tiendas": 4,
+              "diasConVenta": 3,
+              "ticketPromedio": 21617.975,
+              "ventasPorTienda": 21617.975,
+              "piezasPorTienda": 1,
+              "shareSpring": 0.010898264749792854,
+              "segmento": "baja_distribucion_alta_velocidad"
+            },
+            {
+              "interno": 92875493,
+              "descripcion": "COLCHON INDIVIDUAL SCANDINAVIAN DAGALI",
+              "familia": "OTROS",
+              "ventas": 88759.28,
+              "piezas": 12,
+              "tiendas": 5,
+              "diasConVenta": 4,
+              "ticketPromedio": 7396.606666666667,
+              "ventasPorTienda": 17751.856,
+              "piezasPorTienda": 2.4,
+              "shareSpring": 0.011186548837726405,
+              "segmento": "baja_distribucion_alta_velocidad"
+            },
+            {
+              "interno": 92858029,
+              "descripcion": "COLCHON INDIVIDUAL PALMER",
+              "familia": "PALMER",
+              "ventas": 70408.37,
+              "piezas": 5,
+              "tiendas": 4,
+              "diasConVenta": 4,
+              "ticketPromedio": 14081.673999999999,
+              "ventasPorTienda": 17602.0925,
+              "piezasPorTienda": 1.25,
+              "shareSpring": 0.008873738831474418,
+              "segmento": "baja_distribucion_alta_velocidad"
+            },
+            {
+              "interno": 92876625,
+              "descripcion": "COLCHON QUEEN SIZE SCANDINAVIAN DAGALI",
+              "familia": "OTROS",
+              "ventas": 85259.18,
+              "piezas": 6,
+              "tiendas": 5,
+              "diasConVenta": 6,
+              "ticketPromedio": 14209.863333333333,
+              "ventasPorTienda": 17051.836,
+              "piezasPorTienda": 1.2,
+              "shareSpring": 0.010745422686332136,
+              "segmento": "baja_distribucion_alta_velocidad"
+            }
+          ]
+        }
+      },
+      "indicePrecio": {
+        "base": "comercial_limpia",
+        "updatedAt": "2026-03-13T04:34:40.688Z",
+        "payload": {
+          "tiendas": [
+            {
+              "scope": "tienda",
+              "nombre": "TUXTLA GUTIERREZ",
+              "springTicket": 8871.36,
+              "marketTicket": 4152.469375,
+              "leaderTicket": 1848.5735403726705,
+              "indexVsMarket": 2.136405882584023,
+              "indexVsLeader": 4.7990300662918415
+            },
+            {
+              "scope": "tienda",
+              "nombre": "MORELIA ALTOZANO",
+              "springTicket": 13154.744999999999,
+              "marketTicket": 7444.516170212766,
+              "leaderTicket": 7845.3125,
+              "indexVsMarket": 1.7670382734388006,
+              "indexVsLeader": 1.6767649472216688
+            },
+            {
+              "scope": "tienda",
+              "nombre": "INTERNET",
+              "springTicket": 6655.434202898552,
+              "marketTicket": 3965.568604790419,
+              "leaderTicket": 2361.5915779283646,
+              "indexVsMarket": 1.6783051476801503,
+              "indexVsLeader": 2.8181986525954805
+            },
+            {
+              "scope": "tienda",
+              "nombre": "TEPIC",
+              "springTicket": 3616.928571428571,
+              "marketTicket": 9172.399322033898,
+              "leaderTicket": 10022.248245614033,
+              "indexVsMarket": 0.394327421260433,
+              "indexVsLeader": 0.3608899403396261
+            },
+            {
+              "scope": "tienda",
+              "nombre": "CANCUN",
+              "springTicket": 13405.925,
+              "marketTicket": 8697.52015625,
+              "leaderTicket": 12900.226666666667,
+              "indexVsMarket": 1.541350265266883,
+              "indexVsLeader": 1.0392007323902317
+            },
+            {
+              "scope": "tienda",
+              "nombre": "COACALCO",
+              "springTicket": 10037.363333333333,
+              "marketTicket": 6601.521714285714,
+              "leaderTicket": 7652.142,
+              "indexVsMarket": 1.5204620643165419,
+              "indexVsLeader": 1.3117063605632688
+            },
+            {
+              "scope": "tienda",
+              "nombre": "TORREON",
+              "springTicket": 6003.942499999999,
+              "marketTicket": 12215.00425531915,
+              "leaderTicket": 16521.965000000004,
+              "indexVsMarket": 0.4915219327398531,
+              "indexVsLeader": 0.36339155179181154
+            },
+            {
+              "scope": "tienda",
+              "nombre": "PACHUCA OUTLET",
+              "springTicket": 3357.33,
+              "marketTicket": 6748.759999999999,
+              "leaderTicket": 5689.066666666667,
+              "indexVsMarket": 0.497473609966868,
+              "indexVsLeader": 0.5901372222743039
+            },
+            {
+              "scope": "tienda",
+              "nombre": "CACHANILLA",
+              "springTicket": 5423.38,
+              "marketTicket": 9655.227692307693,
+              "leaderTicket": 9664.571666666667,
+              "indexVsMarket": 0.5617039983760093,
+              "indexVsLeader": 0.5611609274630726
+            },
+            {
+              "scope": "tienda",
+              "nombre": "MONTERREY GALERIAS",
+              "springTicket": 6998.58,
+              "marketTicket": 12372.066796116504,
+              "leaderTicket": 18426.490857142857,
+              "indexVsMarket": 0.5656758984033937,
+              "indexVsLeader": 0.3798107873202057
+            }
+          ],
+          "skus": [
+            {
+              "scope": "sku",
+              "nombre": "COLCHON INDIVIDUAL PALMER",
+              "springTicket": 14081.673999999999,
+              "marketTicket": 4853.226558766858,
+              "leaderTicket": 5638.325929549899,
+              "indexVsMarket": 2.901507652586895,
+              "indexVsLeader": 2.4974920173023984
+            },
+            {
+              "scope": "sku",
+              "nombre": "COLCHON INDIVIDUAL ASTON",
+              "springTicket": 11642.973333333333,
+              "marketTicket": 4853.226558766858,
+              "leaderTicket": 5638.325929549899,
+              "indexVsMarket": 2.399017064699255,
+              "indexVsLeader": 2.0649699004297855
+            },
+            {
+              "scope": "sku",
+              "nombre": "COLCHON QUEEN SIZE PALMER",
+              "springTicket": 18331.860833333332,
+              "marketTicket": 8855.100295021512,
+              "leaderTicket": 9063.505726495729,
+              "indexVsMarket": 2.070203636613785,
+              "indexVsLeader": 2.022601561307898
+            },
+            {
+              "scope": "sku",
+              "nombre": "BOX INDIVIDUAL PALMER EXHI",
+              "springTicket": 0,
+              "marketTicket": 4853.226558766858,
+              "leaderTicket": 5638.325929549899,
+              "indexVsMarket": 0,
+              "indexVsLeader": 0
+            },
+            {
+              "scope": "sku",
+              "nombre": "BOX INDIVIDUAL EVERTON EXHI",
+              "springTicket": 0,
+              "marketTicket": 4853.226558766858,
+              "leaderTicket": 5638.325929549899,
+              "indexVsMarket": 0,
+              "indexVsLeader": 0
+            },
+            {
+              "scope": "sku",
+              "nombre": "BOX INDIVIDUAL SCANDINAVIAN DAGALI EXHI",
+              "springTicket": 0,
+              "marketTicket": 4853.226558766858,
+              "leaderTicket": 5638.325929549899,
+              "indexVsMarket": 0,
+              "indexVsLeader": 0
+            },
+            {
+              "scope": "sku",
+              "nombre": "BOX INDIVIDUAL ASTON  EXHI",
+              "springTicket": 0,
+              "marketTicket": 4853.226558766858,
+              "leaderTicket": 5638.325929549899,
+              "indexVsMarket": 0,
+              "indexVsLeader": 0
+            },
+            {
+              "scope": "sku",
+              "nombre": "BOX INDIVIDUAL GRAND MASTER",
+              "springTicket": 0,
+              "marketTicket": 4853.226558766858,
+              "leaderTicket": 5638.325929549899,
+              "indexVsMarket": 0,
+              "indexVsLeader": 0
+            },
+            {
+              "scope": "sku",
+              "nombre": "JUEGO DE COLCHON Y BOX  MATRIMONIAL PEACE",
+              "springTicket": 0,
+              "marketTicket": 7715.896867161502,
+              "leaderTicket": 8141.565846438469,
+              "indexVsMarket": 0,
+              "indexVsLeader": 0
+            },
+            {
+              "scope": "sku",
+              "nombre": "COLCHON KING SIZE GRAND MASTER",
+              "springTicket": 0,
+              "marketTicket": 12271.660557913889,
+              "leaderTicket": 13614.245427350434,
+              "indexVsMarket": 0,
+              "indexVsLeader": 0
+            }
+          ],
+          "familias": [
+            {
+              "scope": "familia",
+              "nombre": "EVERTON",
+              "springTicket": 11015.523595505618,
+              "marketTicket": 11015.523595505618,
+              "leaderTicket": 11015.523595505618,
+              "indexVsMarket": 1,
+              "indexVsLeader": 1
+            },
+            {
+              "scope": "familia",
+              "nombre": "ASTON",
+              "springTicket": 10958.339919999997,
+              "marketTicket": 10958.339919999997,
+              "leaderTicket": 10958.339919999997,
+              "indexVsMarket": 1,
+              "indexVsLeader": 1
+            },
+            {
+              "scope": "familia",
+              "nombre": "PALMER",
+              "springTicket": 10461.748539325848,
+              "marketTicket": 10461.748539325848,
+              "leaderTicket": 10461.748539325848,
+              "indexVsMarket": 1,
+              "indexVsLeader": 1
+            },
+            {
+              "scope": "familia",
+              "nombre": "OTROS",
+              "springTicket": 6863.249999999998,
+              "marketTicket": 7335.283426250174,
+              "leaderTicket": 7925.730717299583,
+              "indexVsMarket": 0.9356489178644484,
+              "indexVsLeader": 0.8659453928985379
+            },
+            {
+              "scope": "familia",
+              "nombre": "THERAPY",
+              "springTicket": 6837.8835460992905,
+              "marketTicket": 6837.8835460992905,
+              "leaderTicket": 6837.8835460992905,
+              "indexVsMarket": 1,
+              "indexVsLeader": 1
+            },
+            {
+              "scope": "familia",
+              "nombre": "HARLEM",
+              "springTicket": 5616.475421686747,
+              "marketTicket": 5616.475421686747,
+              "leaderTicket": 5616.475421686747,
+              "indexVsMarket": 1,
+              "indexVsLeader": 1
+            },
+            {
+              "scope": "familia",
+              "nombre": "PERSONALITY",
+              "springTicket": 5408.365379310346,
+              "marketTicket": 5408.365379310346,
+              "leaderTicket": 5408.365379310346,
+              "indexVsMarket": 1,
+              "indexVsLeader": 1
+            }
+          ]
+        }
+      },
+      "mixPrecio": {
+        "base": "comercial_limpia",
+        "updatedAt": "2026-03-13T04:34:40.688Z",
+        "payload": [
+          {
+            "label": "<= $4,950",
+            "min": 0,
+            "max": 4949.53,
+            "ventas": 1080457.38,
+            "piezas": 295,
+            "shareVentas": 0.1361726824333401,
+            "sharePiezas": 0.27882797731569
+          },
+          {
+            "label": "$4,950 - $8,483",
+            "min": 4949.53,
+            "max": 8483.11,
+            "ventas": 2931350.6399999983,
+            "piezas": 470,
+            "shareVentas": 0.36944528048064984,
+            "sharePiezas": 0.444234404536862
+          },
+          {
+            "label": "$8,483 - $12,002",
+            "min": 8483.11,
+            "max": 12002.08,
+            "ventas": 1337510.8599999994,
+            "piezas": 135,
+            "shareVentas": 0.16856976032680118,
+            "sharePiezas": 0.1275992438563327
+          },
+          {
+            "label": "> $12,002",
+            "min": 12002.08,
+            "max": null,
+            "ventas": 2585146.1,
+            "piezas": 158,
+            "shareVentas": 0.32581227675920704,
+            "sharePiezas": 0.14933837429111532
+          }
+        ]
+      },
+      "consistenciaDiaria": {
+        "base": "comercial_limpia",
+        "updatedAt": "2026-03-13T04:34:40.688Z",
+        "payload": {
+          "top3Share": 0.1611910006816868,
+          "coefficientOfVariation": 0.3795861554366024,
+          "bestDay": {
+            "dia": 5,
+            "ventas": 464503.55000000005,
+            "piezas": 66,
+            "ticketPromedio": 7037.932575757576
+          },
+          "worstDay": {
+            "dia": 1,
+            "ventas": 35809.15,
+            "piezas": 5,
+            "ticketPromedio": 7161.83
+          }
+        }
+      },
+      "riesgoDependencia": {
+        "base": "comercial_limpia",
+        "updatedAt": "2026-03-13T04:34:40.688Z",
+        "payload": {
+          "topSkuShare": 0.1005471285097283,
+          "topFamilyShare": 0.2430262361558746,
+          "stores": [
+            {
+              "tienda": "COACALCO",
+              "ventas": 30112.09,
+              "topSku": "COLCHON MATRIMONIAL EVERTON",
+              "topSkuShare": 0.877356237976175,
+              "topFamily": "EVERTON",
+              "topFamilyShare": 1
+            },
+            {
+              "tienda": "INTERLOMAS",
+              "ventas": 13466.560000000001,
+              "topSku": "COLCHON QUEEN SIZE THERAPY",
+              "topSkuShare": 0.5092280433904427,
+              "topFamily": "THERAPY",
+              "topFamilyShare": 1
+            },
+            {
+              "tienda": "VIA VALLEJO",
+              "ventas": 16893.059999999998,
+              "topSku": "COLCHON MATRIMONIAL THERAPY",
+              "topSkuShare": 0.7555055152826072,
+              "topFamily": "THERAPY",
+              "topFamilyShare": 1
+            },
+            {
+              "tienda": "CUATRO CAMINOS",
+              "ventas": 5294.7,
+              "topSku": "COLCHON INDIVIDUAL HARLEM",
+              "topSkuShare": 1,
+              "topFamily": "HARLEM",
+              "topFamilyShare": 1
+            },
+            {
+              "tienda": "GUADALAJARA CENTRO",
+              "ventas": 13419.48,
+              "topSku": "COLCHON MATRIMONIAL PERSONALITY",
+              "topSkuShare": 1,
+              "topFamily": "PERSONALITY",
+              "topFamilyShare": 1
+            },
+            {
+              "tienda": "CUERNAVACA",
+              "ventas": 8731.29,
+              "topSku": "COLCHON QUEEN SIZE THERAPY",
+              "topSkuShare": 1,
+              "topFamily": "THERAPY",
+              "topFamilyShare": 1
+            },
+            {
+              "tienda": "GOMEZ PALACIO",
+              "ventas": 6470.1,
+              "topSku": "COLCHON MATRIMONIAL PERSONALITY",
+              "topSkuShare": 1,
+              "topFamily": "PERSONALITY",
+              "topFamilyShare": 1
+            },
+            {
+              "tienda": "PACHUCA OUTLET",
+              "ventas": 3357.33,
+              "topSku": "BOX MATRIMONIAL PALMER",
+              "topSkuShare": 1,
+              "topFamily": "PALMER",
+              "topFamilyShare": 1
+            },
+            {
+              "tienda": "TORREON",
+              "ventas": 24015.769999999997,
+              "topSku": "COLCHON INDIVIDUAL HARLEM",
+              "topSkuShare": 0.7122794730295968,
+              "topFamily": "HARLEM",
+              "topFamilyShare": 1
+            },
+            {
+              "tienda": "COATZACOALCOS",
+              "ventas": 12606.64,
+              "topSku": "COLCHON MATRIMONIAL HARLEM",
+              "topSkuShare": 1,
+              "topFamily": "HARLEM",
+              "topFamilyShare": 1
+            }
+          ]
+        }
+      },
+      "mapaOportunidad": {
+        "base": "comercial_limpia",
+        "updatedAt": "2026-03-13T04:34:40.688Z",
+        "payload": [
+          {
+            "tienda": "PACHUCA PLAZA Q",
+            "lat": 20.1165,
+            "lon": -98.7414,
+            "ventas": 515403.11999999994,
+            "piezas": 63,
+            "ticketPromedio": 8181.0019047619035,
+            "segment": "standard",
+            "shareDentroTienda": 0.2724695686533621
+          },
+          {
+            "tienda": "MORELIA LAS AMERICAS",
+            "lat": 19.6787,
+            "lon": -101.1884,
+            "ventas": 430689.12,
+            "piezas": 61,
+            "ticketPromedio": 7060.47737704918,
+            "segment": "standard",
+            "shareDentroTienda": 0.2604428599539903
+          },
+          {
+            "tienda": "LEON PLAZA",
+            "lat": 21.122,
+            "lon": -101.683,
+            "ventas": 391446.04,
+            "piezas": 46,
+            "ticketPromedio": 8509.69652173913,
+            "segment": "standard",
+            "shareDentroTienda": 0.25408358545923826
+          },
+          {
+            "tienda": "PERISUR",
+            "lat": 19.304,
+            "lon": -99.19,
+            "ventas": 383145.39,
+            "piezas": 56,
+            "ticketPromedio": 6841.881964285714,
+            "segment": "opportunity",
+            "opportunity": 402922.74350893684,
+            "shareDentroTienda": 0.11913829022391292
+          },
+          {
+            "tienda": "SATELITE",
+            "lat": 19.513,
+            "lon": -99.236,
+            "ventas": 377612.44999999995,
+            "piezas": 39,
+            "ticketPromedio": 9682.370512820511,
+            "segment": "standard",
+            "shareDentroTienda": 0.16263114756424743
+          },
+          {
+            "tienda": "TANGAMANGA",
+            "lat": 22.1332,
+            "lon": -101.0069,
+            "ventas": 349130.51000000007,
+            "piezas": 49,
+            "ticketPromedio": 7125.112448979593,
+            "segment": "standard",
+            "shareDentroTienda": 0.2501239513425555
+          },
+          {
+            "tienda": "QUERETARO PLAZA",
+            "lat": 20.5888,
+            "lon": -100.3899,
+            "ventas": 333746,
+            "piezas": 41,
+            "ticketPromedio": 8140.1463414634145,
+            "segment": "standard",
+            "shareDentroTienda": 0.2528292519473426
+          },
+          {
+            "tienda": "PASEO DURANGO",
+            "lat": 24.0277,
+            "lon": -104.6532,
+            "ventas": 313474.84,
+            "piezas": 37,
+            "ticketPromedio": 8472.292972972973,
+            "segment": "standard",
+            "shareDentroTienda": 0.2766561503003668
+          },
+          {
+            "tienda": "CUAUTITLAN",
+            "lat": 19.7055,
+            "lon": -99.1666,
+            "ventas": 310184.01,
+            "piezas": 42,
+            "ticketPromedio": 7385.333571428571,
+            "segment": "standard",
+            "shareDentroTienda": 0.16856027615922162
+          },
+          {
+            "tienda": "TEZONTLE",
+            "lat": 19.3894,
+            "lon": -99.0891,
+            "ventas": 239421.63000000003,
+            "piezas": 30,
+            "ticketPromedio": 7980.721000000001,
+            "segment": "standard",
+            "shareDentroTienda": 0.12435716685075823
+          },
+          {
+            "tienda": "COAPA",
+            "lat": 19.3084,
+            "lon": -99.1225,
+            "ventas": 238081.58999999997,
+            "piezas": 31,
+            "ticketPromedio": 7680.05129032258,
+            "segment": "standard",
+            "shareDentroTienda": 0.147817844333278
+          },
+          {
+            "tienda": "COLIMA ZENTRALIA",
+            "lat": 19.2439,
+            "lon": -103.7274,
+            "ventas": 172050.80000000002,
+            "piezas": 18,
+            "ticketPromedio": 9558.37777777778,
+            "segment": "standard",
+            "shareDentroTienda": 0.21216482460444486
+          },
+          {
+            "tienda": "SANTA FE",
+            "lat": 19.361,
+            "lon": -99.2613,
+            "ventas": 155556.05000000002,
+            "piezas": 20,
+            "ticketPromedio": 7777.802500000001,
+            "segment": "standard",
+            "shareDentroTienda": 0.14241217003500078
+          },
+          {
+            "tienda": "ANGELOPOLIS",
+            "lat": 19.0155,
+            "lon": -98.2417,
+            "ventas": 148318.06000000003,
+            "piezas": 19,
+            "ticketPromedio": 7806.213684210527,
+            "segment": "standard",
+            "shareDentroTienda": 0.11134241438989213
+          },
+          {
+            "tienda": "TLALNEPANTLA",
+            "lat": 19.5387,
+            "lon": -99.1943,
+            "ventas": 144813.22,
+            "piezas": 16,
+            "ticketPromedio": 9050.82625,
+            "segment": "standard",
+            "shareDentroTienda": 0.1451773290966944
+          },
+          {
+            "tienda": "INSURGENTES",
+            "lat": 19.3925,
+            "lon": -99.1716,
+            "ventas": 137913.16,
+            "piezas": 20,
+            "ticketPromedio": 6895.658,
+            "segment": "standard",
+            "shareDentroTienda": 0.2047499261359778
+          },
+          {
+            "tienda": "UNIVERSIDAD",
+            "lat": 19.3328,
+            "lon": -99.1857,
+            "ventas": 134911.15000000002,
+            "piezas": 20,
+            "ticketPromedio": 6745.557500000001,
+            "segment": "opportunity",
+            "opportunity": 316146.3457230048,
+            "shareDentroTienda": 0.07310782933037922
+          },
+          {
+            "tienda": "OAXACA PLAZA",
+            "lat": 17.0732,
+            "lon": -96.7266,
+            "ventas": 84293.49999999999,
+            "piezas": 10,
+            "ticketPromedio": 8429.349999999999,
+            "segment": "opportunity",
+            "opportunity": 343430.96739939164,
+            "shareDentroTienda": 0.04817014371250518
+          },
+          {
+            "tienda": "CULIACAN GALERIAS",
+            "lat": 24.8007,
+            "lon": -107.4188,
+            "ventas": 65710.81000000001,
+            "piezas": 6,
+            "ticketPromedio": 10951.801666666668,
+            "segment": "standard",
+            "shareDentroTienda": 0.19399349688437775
+          },
+          {
+            "tienda": "FORJADORES",
+            "lat": 19.0797,
+            "lon": -98.2364,
+            "ventas": 53633.92999999999,
+            "piezas": 9,
+            "ticketPromedio": 5959.325555555555,
+            "segment": "standard",
+            "shareDentroTienda": 0.2632518552545819
+          }
+        ]
+      }
+    }
+  },
+  "calidad": {
+    "updatedAt": "2026-03-13T04:34:40.688Z",
+    "tasaDevoluciones": {
+      "rows": 99,
+      "shareRows": 0.01485594237695078,
+      "ventas": 960870.3999999999,
+      "shareVentas": 0.010870495952381161,
+      "piezas": 99,
+      "sharePiezas": 0.00869870837360513
+    },
+    "tasaLineasNoCore": {
+      "rows": 167,
+      "shareRows": 0.025060024009603842,
+      "ventas": 149727.01000000004,
+      "shareVentas": 0.0016938880167056182
+    },
+    "filasAnomalas": {
+      "positiveSalesZeroUnits": 19,
+      "nearZeroSalesPositiveUnits": 70,
+      "totalFlaggedRows": 89,
+      "shareRows": 0.013355342136854742
+    },
+    "coberturaMapa": {
+      "storesWithCoordinates": 20,
+      "springActiveStores": 81,
+      "coverage": 0.24691358024691357
+    }
   }
 }

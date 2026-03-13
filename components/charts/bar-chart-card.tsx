@@ -24,6 +24,9 @@ interface BarChartCardProps {
   rows: ChartRow[];
   color?: string;
   highlightColor?: string;
+  infoTooltip?: string;
+  onInfoClick?: (trigger: HTMLElement) => void;
+  infoLabel?: string;
 }
 
 export function BarChartCard({
@@ -31,12 +34,35 @@ export function BarChartCard({
   rows,
   color = "#2563eb",
   highlightColor = "#0f172a",
+  infoTooltip,
+  onInfoClick,
+  infoLabel,
 }: BarChartCardProps) {
   return (
     <section className="rounded-[2.5rem] border border-slate-100 bg-white p-10 shadow-sm">
       <div className="mb-6">
         <p className="text-[10px] font-bold uppercase tracking-[0.32em] text-slate-400">Visual</p>
-        <h3 className="mt-3 text-2xl font-bold tracking-tight text-slate-900">{title}</h3>
+        <div className="mt-3 flex items-center gap-3">
+          <h3 className="text-2xl font-bold tracking-tight text-slate-900">{title}</h3>
+          {onInfoClick ? (
+            <button
+              type="button"
+              onClick={(event) => onInfoClick(event.currentTarget)}
+              aria-label={infoLabel ?? `Abrir ayuda para ${title}`}
+              className="inline-flex h-6 w-6 items-center justify-center rounded-full border border-slate-200 text-xs font-bold text-slate-500 transition hover:border-slate-300 hover:text-slate-900"
+            >
+              i
+            </button>
+          ) : infoTooltip ? (
+            <span
+              className="inline-flex h-6 w-6 items-center justify-center rounded-full border border-slate-200 text-xs font-bold text-slate-500"
+              title={infoTooltip}
+              aria-label={infoTooltip}
+            >
+              i
+            </span>
+          ) : null}
+        </div>
       </div>
 
       <div className="h-[380px]">

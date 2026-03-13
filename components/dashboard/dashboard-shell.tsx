@@ -4,6 +4,7 @@ import { useDeferredValue, useState } from "react";
 import clsx from "clsx";
 import dynamic from "next/dynamic";
 
+import { AnalyticsPanel } from "@/components/dashboard/analytics-panel";
 import { HistoricalPanel } from "@/components/dashboard/historical-panel";
 import { MapPanel } from "@/components/dashboard/map-panel";
 import {
@@ -40,6 +41,7 @@ const LineChartCard = dynamic(
 
 const tabs = [
   { id: "resumen", label: "Resumen", icon: "grid" },
+  { id: "analitica", label: "Analitica", icon: "target" },
   { id: "historico", label: "Historico", icon: "clock" },
   { id: "competencia", label: "Competencia", icon: "bars" },
   { id: "productos", label: "Productos", icon: "box" },
@@ -108,6 +110,16 @@ function NavIcon({ name }: { name: IconName }) {
     return (
       <svg className={common} fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9L12 3z" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.8" />
+      </svg>
+    );
+  }
+
+  if (name === "target") {
+    return (
+      <svg className={common} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path d="M12 4v2m0 12v2m8-8h-2M6 12H4m13.657-5.657l-1.414 1.414M7.757 16.243l-1.414 1.414m0-11.314l1.414 1.414m8.486 8.486l1.414 1.414" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.8" />
+        <circle cx="12" cy="12" r="3.5" strokeWidth="1.8" />
+        <circle cx="12" cy="12" r="7.5" strokeWidth="1.8" />
       </svg>
     );
   }
@@ -494,6 +506,8 @@ export function DashboardShell({ data }: { data: DashboardData }) {
               </section>
             )
           )}
+
+          {activeTab === "analitica" && <AnalyticsPanel mediciones={data.mediciones} calidad={data.calidad} />}
 
           {activeTab === "competencia" && (
             <section className="space-y-10">

@@ -5,14 +5,21 @@ import { CircleMarker, MapContainer, Popup, TileLayer } from "react-leaflet";
 import { formatCurrency, formatNumber } from "@/lib/dashboard/format";
 import type { MapStore } from "@/lib/dashboard/types";
 
-function getMarkerColor(ventas: number) {
+function getMarkerColor(store: MapStore) {
+  if (store.segment === "white_space") return "#dc2626";
+  if (store.segment === "opportunity") return "#2563eb";
+  const ventas = store.ventas;
   if (ventas > 400000) return "#0d8a68";
   if (ventas > 300000) return "#0f6cbd";
   if (ventas > 200000) return "#ef7d32";
   return "#8b98a8";
 }
 
-function getMarkerRadius(ventas: number) {
+function getMarkerRadius(store: MapStore) {
+  const reference = store.opportunity && store.opportunity > 0 ? store.opportunity : store.ventas;
+  if (store.segment === "white_space") return 13;
+  if (store.segment === "opportunity" && reference > 300000) return 14;
+  const ventas = reference;
   if (ventas > 400000) return 14;
   if (ventas > 300000) return 12;
   if (ventas > 200000) return 10;
@@ -30,11 +37,11 @@ export function LeafletMap({ stores }: { stores: MapStore[] }) {
         <CircleMarker
           key={store.tienda}
           center={[store.lat, store.lon]}
-          radius={getMarkerRadius(store.ventas)}
+          radius={getMarkerRadius(store)}
           pathOptions={{
             color: "#fff",
             weight: 2,
-            fillColor: getMarkerColor(store.ventas),
+            fillColor: getMarkerColor(store),
             fillOpacity: 0.92,
           }}
         >
@@ -44,6 +51,14 @@ export function LeafletMap({ stores }: { stores: MapStore[] }) {
               <p className="text-sm text-slate-600">Ventas: {formatCurrency(store.ventas)}</p>
               <p className="text-sm text-slate-600">Piezas: {formatNumber(store.piezas)}</p>
               <p className="text-sm text-slate-600">Ticket: {formatCurrency(store.ticketPromedio)}</p>
+              {typeof store.shareDentroTienda === "number" && (
+                <p className="text-sm text-slate-600">
+                  Share tienda: {(store.shareDentroTienda * 100).toFixed(1)}%
+                </p>
+              )}
+              {typeof store.opportunity === "number" && (
+                <p className="text-sm text-slate-600">Oportunidad: {formatCurrency(store.opportunity)}</p>
+              )}
             </div>
           </Popup>
         </CircleMarker>
@@ -51,4 +66,3 @@ export function LeafletMap({ stores }: { stores: MapStore[] }) {
     </MapContainer>
   );
 }
-
