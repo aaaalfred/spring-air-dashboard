@@ -90,11 +90,18 @@ export interface DailyPoint {
 
 export interface MapStore {
   tienda: string;
+  tiendaId?: number | null;
+  determinante?: string | null;
   lat: number;
   lon: number;
   ventas: number;
   piezas: number;
   ticketPromedio: number;
+  promotoria?: boolean;
+  localizacion?: string | null;
+  cadena?: string | null;
+  formato?: string | null;
+  tiendaFuente?: string | null;
   segment?: "standard" | "opportunity" | "white_space";
   opportunity?: number;
   shareDentroTienda?: number;
@@ -130,14 +137,33 @@ export interface ProviderVelocityRow {
 export interface StoreOpportunityRow {
   tienda: string;
   tiendaId: number | null;
+  determinante?: string | null;
   ventasMercado: number;
   ventasSpring: number;
   shareActual: number;
   shareObjetivo: number;
   gapShare: number;
   oportunidadVenta: number;
+  promotoria?: boolean;
+  localizacion?: string | null;
+  cadena?: string | null;
+  formato?: string | null;
+  tiendaFuente?: string | null;
   lat?: number;
   lon?: number;
+}
+
+export interface PromoterStoreRow {
+  tienda: string;
+  tiendaId: number | null;
+  determinante: string | null;
+  lat: number;
+  lon: number;
+  localizacion: string | null;
+  cadena: string | null;
+  formato: string | null;
+  promotoria: boolean;
+  matchedDashboardStore: string | null;
 }
 
 export interface ProductividadSkuRow {
@@ -340,4 +366,10 @@ export interface DashboardData {
     comercialLimpia: MeasurementSuite;
   };
   calidad: DataQualityStats;
+  promotoria: {
+    source: string;
+    totalTiendas: number;
+    matchedDashboardStores: number;
+    tiendas: PromoterStoreRow[];
+  };
 }

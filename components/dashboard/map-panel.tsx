@@ -63,6 +63,48 @@ export function MapPanel({
         <p className="max-w-xl text-sm text-slate-500">{note}</p>
       </div>
 
+      <div className="mb-6 grid gap-3 rounded-[1.5rem] border border-slate-100 bg-slate-50/80 p-4 lg:grid-cols-3">
+        <div>
+          <p className="text-[10px] font-bold uppercase tracking-[0.24em] text-slate-400">Color</p>
+          <div className="mt-3 flex flex-wrap gap-2">
+            <span className="inline-flex items-center gap-2 rounded-full border border-red-200 bg-white px-3 py-1.5 text-xs font-medium text-slate-600">
+              <span className="h-2.5 w-2.5 rounded-full bg-red-600" aria-hidden="true" />
+              Tienda blanca
+            </span>
+            <span className="inline-flex items-center gap-2 rounded-full border border-blue-200 bg-white px-3 py-1.5 text-xs font-medium text-slate-600">
+              <span className="h-2.5 w-2.5 rounded-full bg-blue-600" aria-hidden="true" />
+              Oportunidad
+            </span>
+            <span className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-1.5 text-xs font-medium text-slate-600">
+              <span className="h-2.5 w-2.5 rounded-full bg-slate-400" aria-hidden="true" />
+              Tienda estandar
+            </span>
+          </div>
+        </div>
+
+        <div>
+          <p className="text-[10px] font-bold uppercase tracking-[0.24em] text-slate-400">Borde</p>
+          <div className="mt-3 flex flex-wrap gap-2">
+            <span className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-1.5 text-xs font-medium text-slate-600">
+              <span className="h-3 w-3 rounded-full border-[2.5px] border-emerald-900 bg-white" aria-hidden="true" />
+              Con promotoria
+            </span>
+            <span className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-1.5 text-xs font-medium text-slate-600">
+              <span className="h-3 w-3 rounded-full border-2 border-white bg-slate-300" aria-hidden="true" />
+              Sin promotoria
+            </span>
+          </div>
+        </div>
+
+        <div>
+          <p className="text-[10px] font-bold uppercase tracking-[0.24em] text-slate-400">Tamano</p>
+          <p className="mt-3 text-xs leading-6 text-slate-500">
+            El tamano del punto crece con el peso comercial de la tienda. En focos de oportunidad y tiendas blancas se
+            basa en la oportunidad estimada; en tiendas estandar se apoya en ventas.
+          </p>
+        </div>
+      </div>
+
       {stores.length > 0 ? (
         <DynamicLeafletMap stores={stores} />
       ) : (

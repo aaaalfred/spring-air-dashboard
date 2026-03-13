@@ -507,7 +507,9 @@ export function DashboardShell({ data }: { data: DashboardData }) {
             )
           )}
 
-          {activeTab === "analitica" && <AnalyticsPanel mediciones={data.mediciones} calidad={data.calidad} />}
+          {activeTab === "analitica" && (
+            <AnalyticsPanel mediciones={data.mediciones} calidad={data.calidad} promotoria={data.promotoria} />
+          )}
 
           {activeTab === "competencia" && (
             <section className="space-y-10">

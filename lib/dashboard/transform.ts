@@ -18,6 +18,7 @@ import type {
   MetricBase,
   PortfolioConcentrationMetric,
   PriceMixBand,
+  PromoterStoreRow,
   ProductividadSkuRow,
   ProductRow,
   ProviderVelocityRow,
@@ -48,8 +49,14 @@ interface BaseRecord {
 
 interface CoordinateRow {
   tienda: string;
+  tiendaId: number | null;
+  determinante: string | null;
   lat: number;
   lon: number;
+  localizacion: string | null;
+  cadena: string | null;
+  formato: string | null;
+  promotoria: boolean;
 }
 
 interface PeriodInfo {
@@ -65,6 +72,13 @@ interface PeriodInfo {
 interface ProductAggregate {
   row: ProductRow;
   stores: Set<string>;
+}
+
+interface PromoterStoreAlias {
+  sourceName: string;
+  sourceLocation?: string;
+  dashboardStoreId: number;
+  dashboardStoreName: string;
 }
 
 const MONTHS_ES = [
@@ -90,6 +104,16 @@ const TOTAL_SALES_INDEX = 67;
 const BASE_COLUMNS = 68;
 const SPRING_NAME_MATCHER = /SPRING AIR/i;
 const NO_CORE_MATCHER = /(DESC|EXHIBICION|OBSEQUIO|PROMOCIONALES?|PROMOCION)/i;
+const PROMOTER_STORE_ALIASES: PromoterStoreAlias[] = [
+  { sourceName: "OUTLET", sourceLocation: "PACHUCA", dashboardStoreId: 213, dashboardStoreName: "PACHUCA OUTLET" },
+  { sourceName: "SAN LUIS PLAZA", sourceLocation: "SAN LUIS POTOSI", dashboardStoreId: 241, dashboardStoreName: "SAN LUIS PLAZA" },
+  { sourceName: "SAN LUIS CENTRO", sourceLocation: "SAN LUIS POTOSI", dashboardStoreId: 301, dashboardStoreName: "SAN LUIS POTOSI CENTRO" },
+  { sourceName: "AGUASCALIENTES ALTARIA", sourceLocation: "AGUASCALIETES", dashboardStoreId: 231, dashboardStoreName: "AGUASCALIENTES ALTARIA" },
+  { sourceName: "CIBELES", sourceLocation: "GUANAJUATO", dashboardStoreId: 253, dashboardStoreName: "IRAPUATO CIBELES" },
+  { sourceName: "GALERIAS", sourceLocation: "GUANAJUATO", dashboardStoreId: 245, dashboardStoreName: "CELAYA GALERIAS" },
+  { sourceName: "OAXACA PLAZA", sourceLocation: "OAXACA", dashboardStoreId: 214, dashboardStoreName: "OAXACA PLAZA" },
+  { sourceName: "CENTRO", sourceLocation: "PUEBLA", dashboardStoreId: 203, dashboardStoreName: "PUEBLA CENTRO" },
+];
 
 const money = new Intl.NumberFormat("es-MX", {
   style: "currency",
@@ -232,10 +256,108 @@ function standardDeviation(values: number[]) {
   return Math.sqrt(variance);
 }
 
+function normalizeStoreKey(value: string) {
+  return value.trim().toUpperCase();
+}
+
+function findPromoterStoreAlias(store: Pick<CoordinateRow, "tienda" | "localizacion">) {
+  const storeName = normalizeStoreKey(store.tienda);
+  const storeLocation = normalizeStoreKey(store.localizacion ?? "");
+
+  return PROMOTER_STORE_ALIASES.find(
+    (alias) =>
+      normalizeStoreKey(alias.sourceName) === storeName &&
+      (!alias.sourceLocation || normalizeStoreKey(alias.sourceLocation) === storeLocation),
+  );
+}
+
+function loadPromoterStores() {
+  const filePath = path.join(process.cwd(), "data", "promoter-stores.json");
+  const raw = readFileSync(filePath, "utf8");
+  const rows = JSON.parse(raw) as CoordinateRow[];
+
+  return rows.map((row) => ({
+    ...row,
+    tiendaId: row.tiendaId && row.tiendaId > 0 ? row.tiendaId : null,
+  }));
+}
+
 function loadCoordinates() {
   const filePath = path.join(process.cwd(), "data", "store-coordinates.json");
   const raw = readFileSync(filePath, "utf8");
-  return JSON.parse(raw) as CoordinateRow[];
+  const legacy = JSON.parse(raw) as Array<{ tienda: string; lat: number; lon: number }>;
+  const promoterStores = loadPromoterStores();
+  const merged = [...promoterStores];
+  const existingKeys = new Set(
+    promoterStores.flatMap((row) => [
+      row.tiendaId !== null ? `id:${row.tiendaId}` : null,
+      `name:${normalizeStoreKey(row.tienda)}`,
+    ]).filter(Boolean) as string[],
+  );
+
+  for (const row of legacy) {
+    const key = `name:${normalizeStoreKey(row.tienda)}`;
+    if (existingKeys.has(key)) continue;
+    merged.push({
+      tienda: row.tienda,
+      tiendaId: null,
+      determinante: null,
+      lat: row.lat,
+      lon: row.lon,
+      localizacion: null,
+      cadena: null,
+      formato: null,
+      promotoria: false,
+    });
+  }
+
+  return merged;
+}
+
+function buildCoordinateLookup(rows: CoordinateRow[]) {
+  const lookup = new Map<string, CoordinateRow>();
+  for (const row of rows) {
+    if (row.tiendaId !== null) {
+      lookup.set(`id:${row.tiendaId}`, row);
+    }
+    lookup.set(`name:${normalizeStoreKey(row.tienda)}`, row);
+
+    const alias = findPromoterStoreAlias(row);
+    if (alias) {
+      lookup.set(`id:${alias.dashboardStoreId}`, row);
+      lookup.set(`name:${normalizeStoreKey(alias.dashboardStoreName)}`, row);
+    }
+  }
+  return lookup;
+}
+
+function findCoordinate(
+  coordinateLookup: Map<string, CoordinateRow>,
+  tienda: string,
+  tiendaId: number | null,
+) {
+  if (tiendaId !== null) {
+    const byId = coordinateLookup.get(`id:${tiendaId}`);
+    if (byId) return byId;
+  }
+
+  return coordinateLookup.get(`name:${normalizeStoreKey(tienda)}`);
+}
+
+function resolveDashboardStoreMatch(
+  store: CoordinateRow,
+  dashboardStoresById: Map<number, string>,
+  dashboardStoresByName: Map<string, string>,
+) {
+  const alias = findPromoterStoreAlias(store);
+
+  return (
+    (store.tiendaId !== null ? dashboardStoresById.get(store.tiendaId) : null) ??
+    dashboardStoresByName.get(normalizeStoreKey(store.tienda)) ??
+    (alias ? dashboardStoresById.get(alias.dashboardStoreId) : null) ??
+    (alias ? dashboardStoresByName.get(normalizeStoreKey(alias.dashboardStoreName)) : null) ??
+    null
+  );
 }
 
 function isCommercialCleanRecord(record: BaseRecord) {
@@ -495,21 +617,28 @@ function aggregateStores(records: BaseRecord[], springRecords: BaseRecord[], spr
 
 function buildMapRows(
   stores: StoreRow[],
-  coordinateMap: Map<string, CoordinateRow>,
+  coordinateLookup: Map<string, CoordinateRow>,
   highlighter?: Map<string, Partial<MapStore>>,
 ) {
   const mapped = stores
     .map((store) => {
-      const coordinate = coordinateMap.get(store.tienda);
+      const coordinate = findCoordinate(coordinateLookup, store.tienda, store.tiendaId);
       if (!coordinate) return null;
       const highlight = highlighter?.get(store.tienda);
       return {
         tienda: store.tienda,
+        tiendaId: store.tiendaId,
+        determinante: coordinate.determinante,
         lat: coordinate.lat,
         lon: coordinate.lon,
         ventas: store.ventas,
         piezas: store.piezas,
         ticketPromedio: store.ticketPromedio,
+        promotoria: coordinate.promotoria,
+        localizacion: coordinate.localizacion,
+        cadena: coordinate.cadena,
+        formato: coordinate.formato,
+        tiendaFuente: coordinate.tienda,
         segment: highlight?.segment ?? "standard",
         opportunity: highlight?.opportunity,
         shareDentroTienda: highlight?.shareDentroTienda ?? store.shareDentroTienda,
@@ -615,7 +744,7 @@ function buildProviderVelocity(records: BaseRecord[]): ProviderVelocityRow[] {
   }));
 }
 
-function buildStoreOpportunityRows(records: BaseRecord[], coordinateMap: Map<string, CoordinateRow>) {
+function buildStoreOpportunityRows(records: BaseRecord[], coordinateLookup: Map<string, CoordinateRow>) {
   const marketStoreSales = new Map<string, { tiendaId: number | null; ventasMercado: number; ventasSpring: number }>();
 
   for (const record of records) {
@@ -647,16 +776,23 @@ function buildStoreOpportunityRows(records: BaseRecord[], coordinateMap: Map<str
   const marketMedian = median([...marketStoreSales.values()].map((row) => row.ventasMercado));
   const benchmarkStores = topShares.map((row) => row.tienda);
   const benchmarkRows = topShares.map((row) => {
-    const coordinate = coordinateMap.get(row.tienda);
+    const tiendaId = marketStoreSales.get(row.tienda)?.tiendaId ?? null;
+    const coordinate = findCoordinate(coordinateLookup, row.tienda, tiendaId);
     return {
       tienda: row.tienda,
-      tiendaId: marketStoreSales.get(row.tienda)?.tiendaId ?? null,
+      tiendaId,
+      determinante: coordinate?.determinante,
       ventasMercado: row.ventasMercado,
       ventasSpring: row.ventasSpring,
       shareActual: row.shareActual,
       shareObjetivo,
       gapShare: Math.max(0, shareObjetivo - row.shareActual),
       oportunidadVenta: Math.max(0, row.ventasMercado * shareObjetivo - row.ventasSpring),
+      promotoria: coordinate?.promotoria,
+      localizacion: coordinate?.localizacion,
+      cadena: coordinate?.cadena,
+      formato: coordinate?.formato,
+      tiendaFuente: coordinate?.tienda,
       lat: coordinate?.lat,
       lon: coordinate?.lon,
     };
@@ -664,18 +800,24 @@ function buildStoreOpportunityRows(records: BaseRecord[], coordinateMap: Map<str
 
   const rows = [...marketStoreSales.entries()]
     .map(([tienda, aggregate]) => {
-      const coordinate = coordinateMap.get(tienda);
+      const coordinate = findCoordinate(coordinateLookup, tienda, aggregate.tiendaId);
       const shareActual = safeDivide(aggregate.ventasSpring, aggregate.ventasMercado);
       const gapShare = Math.max(0, shareObjetivo - shareActual);
       return {
         tienda,
         tiendaId: aggregate.tiendaId,
+        determinante: coordinate?.determinante,
         ventasMercado: aggregate.ventasMercado,
         ventasSpring: aggregate.ventasSpring,
         shareActual,
         shareObjetivo,
         gapShare,
         oportunidadVenta: Math.max(0, aggregate.ventasMercado * shareObjetivo - aggregate.ventasSpring),
+        promotoria: coordinate?.promotoria,
+        localizacion: coordinate?.localizacion,
+        cadena: coordinate?.cadena,
+        formato: coordinate?.formato,
+        tiendaFuente: coordinate?.tienda,
         lat: coordinate?.lat,
         lon: coordinate?.lon,
       };
@@ -966,14 +1108,14 @@ function buildMeasurementSuite(
   records: BaseRecord[],
   base: MetricBase,
   updatedAt: string,
-  coordinateMap: Map<string, CoordinateRow>,
+  coordinateLookup: Map<string, CoordinateRow>,
 ): MeasurementSuite {
   const springRecords = records.filter((record) => SPRING_NAME_MATCHER.test(record.proveedor));
   const springSales = sum(springRecords.map((record) => record.ventas));
   const productos = aggregateProducts(springRecords, springSales);
   const tiendas = aggregateStores(records, springRecords, springSales);
   const productividad = inferProductividadRows(springRecords, springSales);
-  const opportunity = buildStoreOpportunityRows(records, coordinateMap);
+  const opportunity = buildStoreOpportunityRows(records, coordinateLookup);
   const whiteSpaces = opportunity.rows
     .filter((row) => row.ventasMercado >= opportunity.marketMedian && row.shareActual < 0.03)
     .slice(0, 10);
@@ -1062,14 +1204,14 @@ function buildMeasurementSuite(
     mapaOportunidad: {
       base,
       updatedAt,
-      payload: buildMapRows(tiendas, coordinateMap, mapHighlights).slice(0, 20),
+      payload: buildMapRows(tiendas, coordinateLookup, mapHighlights),
     },
   };
 }
 
 function buildDataQualityStats(
   rawRecords: BaseRecord[],
-  coordinateMap: Map<string, CoordinateRow>,
+  coordinateLookup: Map<string, CoordinateRow>,
   updatedAt: string,
 ): DataQualityStats {
   const negativeRows = rawRecords.filter((record) => record.isNegative);
@@ -1077,10 +1219,14 @@ function buildDataQualityStats(
   const anomalyRows = rawRecords.filter(
     (record) => record.isPositiveSalesZeroUnits || record.isNearZeroSalesPositiveUnits,
   );
-  const springActiveStores = new Set(
-    rawRecords.filter((record) => SPRING_NAME_MATCHER.test(record.proveedor) && record.ventas > 0).map((record) => record.tienda),
-  );
-  const storesWithCoordinates = [...springActiveStores].filter((store) => coordinateMap.has(store)).length;
+  const springActiveStores = new Map<string, { tienda: string; tiendaId: number | null }>();
+  for (const record of rawRecords) {
+    if (!SPRING_NAME_MATCHER.test(record.proveedor) || record.ventas <= 0) continue;
+    springActiveStores.set(record.tienda, { tienda: record.tienda, tiendaId: record.tiendaId });
+  }
+  const storesWithCoordinates = [...springActiveStores.values()].filter((store) =>
+    Boolean(findCoordinate(coordinateLookup, store.tienda, store.tiendaId)),
+  ).length;
   const totalVentas = sum(rawRecords.map((record) => Math.abs(record.ventas)));
   const totalPiezas = sum(rawRecords.map((record) => Math.abs(record.piezas)));
 
@@ -1167,7 +1313,8 @@ export function buildDashboardData(excelFilePath: string): DashboardData {
 
   const generatedAt = new Date().toISOString();
   const coordinates = loadCoordinates();
-  const coordinateMap = new Map(coordinates.map((row) => [row.tienda, row]));
+  const promoterStores = loadPromoterStores();
+  const coordinateLookup = buildCoordinateLookup(coordinates);
   const rawRecords = records;
   const cleanRecords = records.filter(isCommercialCleanRecord);
 
@@ -1187,11 +1334,32 @@ export function buildDashboardData(excelFilePath: string): DashboardData {
     top10SkusShare: topShare(productos, 10, (row) => row.ventas, springSales),
     top5TiendasShare: topShare(tiendas, 5, (row) => row.ventas, springSales),
   };
-  const mapStoreRows = buildMapRows(tiendas, coordinateMap);
+  const mapStoreRows = buildMapRows(tiendas, coordinateLookup);
   const coverageNote = `${mapStoreRows.length} de ${tiendas.length} tiendas Spring Air tienen coordenadas cargadas para el mapa.`;
   const insights = buildInsights(productos, tiendas, concentracion, safeDivide(springSales, marketSales));
   const springSeries = buildDailySeries(springRecords);
   const marketSeries = buildDailySeries(rawRecords);
+  const dashboardStoresById = new Map(
+    tiendas
+      .filter((store) => store.tiendaId !== null)
+      .map((store) => [store.tiendaId as number, store.tienda]),
+  );
+  const dashboardStoresByName = new Map(
+    tiendas.map((store) => [normalizeStoreKey(store.tienda), store.tienda]),
+  );
+  const promotoriaRows: PromoterStoreRow[] = promoterStores.map((store) => ({
+    tienda: store.tienda,
+    tiendaId: store.tiendaId,
+    determinante: store.determinante,
+    lat: store.lat,
+    lon: store.lon,
+    localizacion: store.localizacion,
+    cadena: store.cadena,
+    formato: store.formato,
+    promotoria: true,
+    matchedDashboardStore: resolveDashboardStoreMatch(store, dashboardStoresById, dashboardStoresByName),
+  }));
+  const matchedPromoterStores = promotoriaRows.filter((row) => row.matchedDashboardStore).length;
   const springFamilies = [...new Map(
     springRecords.reduce((entries, record) => {
       entries.set(record.familia, (entries.get(record.familia) ?? 0) + record.ventas);
@@ -1263,9 +1431,15 @@ export function buildDashboardData(excelFilePath: string): DashboardData {
       ],
     },
     mediciones: {
-      raw: buildMeasurementSuite(rawRecords, "raw", generatedAt, coordinateMap),
-      comercialLimpia: buildMeasurementSuite(cleanRecords, "comercial_limpia", generatedAt, coordinateMap),
+      raw: buildMeasurementSuite(rawRecords, "raw", generatedAt, coordinateLookup),
+      comercialLimpia: buildMeasurementSuite(cleanRecords, "comercial_limpia", generatedAt, coordinateLookup),
     },
-    calidad: buildDataQualityStats(rawRecords, coordinateMap, generatedAt),
+    calidad: buildDataQualityStats(rawRecords, coordinateLookup, generatedAt),
+    promotoria: {
+      source: "tiendas_export.xlsx",
+      totalTiendas: promotoriaRows.length,
+      matchedDashboardStores: matchedPromoterStores,
+      tiendas: promotoriaRows,
+    },
   };
 }

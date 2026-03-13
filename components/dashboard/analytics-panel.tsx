@@ -1,7 +1,7 @@
 "use client";
 
+import { cloneElement, isValidElement, useMemo, useState } from "react";
 import type { ReactNode } from "react";
-import { useMemo, useState } from "react";
 import {
   Bar,
   BarChart,
@@ -46,6 +46,11 @@ type AnalyticsHelpKey =
   | "indice_tienda_table"
   | "indice_familia_table"
   | "indice_sku_table"
+  | "promotoria_total"
+  | "promotoria_match"
+  | "promotoria_oportunidad_con"
+  | "promotoria_oportunidad_sin"
+  | "promotoria_match_table"
   | "devoluciones"
   | "lineas_no_core"
   | "filas_anomalias"
@@ -114,20 +119,31 @@ function MiniTable({
   onHelp,
   headers,
   rows,
+  compact = false,
 }: {
   title: string;
   onHelp: (trigger: HTMLElement) => void;
   headers: string[];
   rows: ReactNode[][];
+  compact?: boolean;
 }) {
   return (
-    <div className="overflow-x-auto rounded-[2rem] border border-slate-100 bg-white p-6 shadow-sm">
+    <div className={`overflow-x-auto rounded-[2rem] border border-slate-100 bg-white shadow-sm ${compact ? "p-5" : "p-6"}`}>
       <CardTitle title={title} onHelp={onHelp} />
-      <table className="min-w-full text-left">
+      <table className={`min-w-full text-left ${compact ? "table-fixed" : ""}`}>
         <thead className="border-b border-slate-100 bg-slate-50/90">
           <tr>
-            {headers.map((header) => (
-              <th key={header} className="px-5 py-4 text-[10px] font-bold uppercase tracking-[0.22em] text-slate-400">
+            {headers.map((header, headerIndex) => (
+              <th
+                key={header}
+                className={`font-bold uppercase text-slate-400 ${
+                  compact
+                    ? headerIndex === 0
+                      ? "w-[31%] px-3 py-3 text-[9px] tracking-[0.18em]"
+                      : "px-2.5 py-3 text-[9px] tracking-[0.16em]"
+                    : "px-5 py-4 text-[10px] tracking-[0.22em]"
+                }`}
+              >
                 {header}
               </th>
             ))}
@@ -137,8 +153,17 @@ function MiniTable({
           {rows.map((row, index) => (
             <tr key={index} className="border-b border-slate-100/80 last:border-b-0">
               {row.map((cell, cellIndex) => (
-                <td key={cellIndex} className="px-5 py-4 text-sm text-slate-700">
-                  {cell}
+                <td
+                  key={cellIndex}
+                  className={`text-slate-700 ${
+                    compact
+                      ? cellIndex === 0
+                        ? "px-3 py-3 align-top text-[13px]"
+                        : "whitespace-nowrap px-2.5 py-3 text-[13px] tabular-nums"
+                      : "px-5 py-4 text-sm"
+                  }`}
+                >
+                  {isValidElement(cell) ? cloneElement(cell, { key: `cell-${index}-${cellIndex}` }) : cell}
                 </td>
               ))}
             </tr>
@@ -175,14 +200,22 @@ function MetricCard({
 function SupportStat({
   label,
   value,
+  helper,
+  onHelp,
 }: {
   label: string;
   value: string;
+  helper?: string;
+  onHelp?: (trigger: HTMLElement) => void;
 }) {
   return (
-    <article className="rounded-[1.5rem] border border-slate-100 bg-slate-50/80 p-5">
-      <p className="text-[10px] font-bold uppercase tracking-[0.24em] text-slate-400">{label}</p>
-      <p className="mt-3 text-3xl font-bold tracking-tight text-slate-900">{value}</p>
+    <article className="rounded-[1.25rem] border border-slate-100 bg-slate-50/80 p-4">
+      <div className="flex items-center gap-2">
+        <p className="text-[10px] font-bold uppercase tracking-[0.24em] text-slate-400">{label}</p>
+        {onHelp ? <HelpTrigger label={`Abrir ayuda para ${label}`} onOpen={onHelp} /> : null}
+      </div>
+      <p className="mt-2 text-2xl font-bold tracking-tight text-slate-900">{value}</p>
+      {helper ? <p className="mt-1 text-xs text-slate-500">{helper}</p> : null}
     </article>
   );
 }
@@ -208,57 +241,64 @@ function StatusBadge({
   );
 }
 
-interface PromoterAssumptionRow {
-  tienda: string;
-  ventasSpring: number;
-  shareActual: number;
-  reason: string;
-  source: "benchmark" | "high_signal";
+function PromotoriaIcon({ active }: { active: boolean }) {
+  return (
+    <span
+      title={active ? "Promotoria: Si" : "Promotoria: No"}
+      aria-label={active ? "Promotoria: Si" : "Promotoria: No"}
+      className={`inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full border text-[10px] font-bold ${
+        active
+          ? "border-emerald-200 bg-emerald-50 text-emerald-700"
+          : "border-slate-200 bg-slate-50 text-slate-500"
+      }`}
+    >
+      {active ? "P" : "-"}
+    </span>
+  );
 }
 
-function buildMockPromoterCoverage(current: MeasurementSuite) {
-  const assumed = new Map<string, PromoterAssumptionRow>();
-  const opportunityRows = current.oportunidadTiendas.payload.rows;
-
-  for (const row of current.oportunidadTiendas.payload.benchmarkRows) {
-    if (/^INTERNET$/i.test(row.tienda)) continue;
-    assumed.set(row.tienda, {
-      tienda: row.tienda,
-      ventasSpring: row.ventasSpring,
-      shareActual: row.shareActual,
-      reason: "Benchmark de share: tienda donde la marca ya compite por arriba del promedio.",
-      source: "benchmark",
-    });
-  }
-
-  for (const row of opportunityRows) {
-    if (/^INTERNET$/i.test(row.tienda)) continue;
-    if (row.ventasSpring >= 100000 && row.shareActual >= 0.05) {
-      assumed.set(row.tienda, {
-        tienda: row.tienda,
-        ventasSpring: row.ventasSpring,
-        shareActual: row.shareActual,
-        reason: "Plaza con venta Spring relevante y presencia comercial visible.",
-        source: "high_signal",
-      });
-    }
-  }
-
-  const rows = [...assumed.values()].sort(
-    (left, right) => right.ventasSpring - left.ventasSpring || right.shareActual - left.shareActual,
+function StoreCompactCell({
+  tienda,
+  determinante,
+  promotoria,
+}: {
+  tienda: string;
+  determinante?: string | null;
+  promotoria?: boolean;
+}) {
+  return (
+    <div className="flex items-start gap-2.5">
+      <PromotoriaIcon active={Boolean(promotoria)} />
+      <div className="min-w-0">
+        <p className="truncate text-[13px] font-medium leading-5 text-slate-800">{tienda}</p>
+        <p className="text-[11px] leading-4 text-slate-500">Det. {determinante ?? "-"}</p>
+      </div>
+    </div>
   );
-  const coveredStores = new Set(rows.map((row) => row.tienda));
-  const opportunityWithPromoter = opportunityRows.filter((row) => coveredStores.has(row.tienda));
-  const opportunityWithoutPromoter = opportunityRows.filter((row) => !coveredStores.has(row.tienda));
+}
+
+function buildPromoterCoverage(
+  current: MeasurementSuite,
+  promotoria: DashboardData["promotoria"],
+) {
+  const opportunityRows = current.oportunidadTiendas.payload.rows;
+  const whiteRows = current.tiendasBlancas.payload.rows;
+  const coveredStores = new Set(
+    opportunityRows.filter((row) => row.promotoria).map((row) => row.tienda),
+  );
+  const opportunityWithPromoter = opportunityRows.filter((row) => row.promotoria);
+  const opportunityWithoutPromoter = opportunityRows.filter((row) => !row.promotoria);
+  const whiteWithPromoter = whiteRows.filter((row) => row.promotoria);
+  const whiteWithoutPromoter = whiteRows.filter((row) => !row.promotoria);
+  const matchedDirectoryRows = promotoria.tiendas.filter((row) => row.matchedDashboardStore);
 
   return {
-    rows,
     coveredStores,
     opportunityWithPromoter,
     opportunityWithoutPromoter,
-    assumedCoverage: current.distribucion.payload.marketStores
-      ? rows.length / current.distribucion.payload.marketStores
-      : 0,
+    whiteWithPromoter,
+    whiteWithoutPromoter,
+    matchedDirectoryRows,
   };
 }
 
@@ -451,10 +491,12 @@ function buildHelpRegistry(
   current: MeasurementSuite,
   calidad: DashboardData["calidad"],
   avgFamilyIndex: number,
+  promotoria: DashboardData["promotoria"],
 ): Record<AnalyticsHelpKey, AnalyticsHelpContent> {
   const distribution = current.distribucion.payload;
   const objective = current.oportunidadTiendas.payload;
   const benchmarkRows = objective.benchmarkRows;
+  const promoterCoverage = buildPromoterCoverage(current, promotoria);
   const nezahualcoyotl =
     objective.rows.find((row) => /NEZAHUALCOYOTL/i.test(row.tienda)) ??
     objective.rows[0];
@@ -549,10 +591,12 @@ function buildHelpRegistry(
       dataSource:
         "Se genera a partir de `oportunidadTiendas.payload.rows` y ordena descendentemente por `oportunidadVenta`.",
       example: internet
-        ? `La tienda ${internet.tienda} aparece con ${formatCurrency(internet.oportunidadVenta)} porque hoy vende ${formatCurrency(internet.ventasSpring)} sobre un mercado de ${formatCurrency(internet.ventasMercado)}.`
+        ? `La tienda ${internet.tienda} aparece con ${formatCurrency(internet.oportunidadVenta)} porque hoy vende ${formatCurrency(internet.ventasSpring)} sobre un mercado de ${formatCurrency(internet.ventasMercado)}. En esta vista, el color de la barra indica si tiene promotoria y el nombre en pastilla amarilla marca share actual menor a 3%.`
         : "La grafica ordena las 10 tiendas con mayor oportunidad estimada.",
       rationale:
         "Sirve para priorizar atencion comercial donde el mercado ya existe y la marca tiene una brecha monetizable.",
+      notes:
+        "Lectura visual:\nRojo = tienda con promotoria registrada.\nAzul = tienda sin promotoria identificada.\nNombre en pastilla amarilla = share actual menor a 3%, es decir, una participacion especialmente baja dentro de la tienda.",
     },
     detalle_oportunidad_table: {
       title: "Detalle de oportunidad por tienda",
@@ -566,7 +610,7 @@ function buildHelpRegistry(
       rationale:
         "Permite pasar de una lectura de share a una lectura accionable en pesos por tienda.",
       notes:
-        "El `Gap` se muestra en puntos de participacion faltantes; la `Oportunidad` es ese faltante expresado en venta incremental estimada.",
+        "Como leer esta tabla:\nMuestra las tiendas con mayor venta potencial a capturar. El orden lo define la oportunidad en pesos: donde el mercado es grande y Spring Air todavia esta por debajo del share objetivo.\n\nEl `Gap` se muestra en puntos de participacion faltantes; la `Oportunidad` es ese faltante expresado en venta incremental estimada.",
     },
     tiendas_blancas_table: {
       title: "Tiendas blancas priorizadas",
@@ -581,6 +625,8 @@ function buildHelpRegistry(
         : "Se listan las tiendas con mayor mercado y muy bajo share Spring Air.",
       rationale:
         "Ayuda a detectar plazas donde la marca casi no existe, pero el mercado si justifica entrar o reforzar cobertura.",
+      notes:
+        "Como leer esta tabla:\nEs un filtro mas exigente: solo deja tiendas con mercado relevante y con participacion Spring Air menor a 3%. Sirve para detectar plazas donde la marca casi no existe y deberia activarse cobertura.",
     },
     mapa_oportunidad: {
       title: "Mapa analitico de oportunidad",
@@ -731,6 +777,75 @@ function buildHelpRegistry(
       rationale:
         "Te ayuda a detectar donde un SKU esta demasiado arriba o abajo frente al mercado.",
     },
+    promotoria_total: {
+      title: "Tiendas con promotoria",
+      definition:
+        "Mide cuantas tiendas vienen registradas en la base de promotoria compartida por negocio.",
+      formula: "Tiendas con promotoria = conteo total de filas en el archivo de tiendas con promotoria",
+      dataSource:
+        `Proviene del archivo ${promotoria.source}, que contiene nombre de tienda, determinante y coordenadas.`,
+      example: `${formatNumber(promotoria.totalTiendas)} tiendas registradas con promotoria.`,
+      rationale:
+        "Sirve para saber el universo total cubierto por promotores, aunque no todas esas tiendas necesariamente aparezcan activas en el corte comercial.",
+    },
+    promotoria_match: {
+      title: "Tiendas activas con match",
+      definition:
+        "Cuenta cuantas tiendas del dashboard actual se pudieron cruzar contra la base de promotoria.",
+      formula:
+        "Tiendas activas con match = tiendas del dashboard que hacen match por determinante o, como respaldo, por nombre",
+      dataSource:
+        `Se cruza la base de promotoria (${promotoria.source}) con las tiendas del dashboard del periodo actual.`,
+      example:
+        `${formatNumber(promotoria.matchedDashboardStores)} tiendas activas del dashboard hacen match con promotoria registrada.`,
+      rationale:
+        "Permite separar cobertura teorica total contra cobertura realmente visible en el corte de ventas que estas analizando.",
+    },
+    promotoria_oportunidad_con: {
+      title: "Oportunidad con promotoria",
+      definition:
+        "Suma la oportunidad comercial de las tiendas prioritarias que si tienen cobertura de promotoria.",
+      formula:
+        "Oportunidad con promotoria = suma de oportunidadVenta en tiendas prioritarias donde promotoria = Si",
+      dataSource:
+        "Se calcula sobre el top de oportunidad del dashboard, usando el cruce de promotoria ya aplicado por tienda.",
+      example:
+        `${formatCompactCurrency(
+          promoterCoverage.opportunityWithPromoter.reduce((sum, row) => sum + row.oportunidadVenta, 0),
+        )} de oportunidad en tiendas con cobertura.`,
+      rationale:
+        "Ayuda a distinguir donde el reto es ejecucion comercial dentro de tiendas ya cubiertas, no solo expansion de cobertura.",
+    },
+    promotoria_oportunidad_sin: {
+      title: "Oportunidad sin promotoria",
+      definition:
+        "Suma la oportunidad comercial de las tiendas prioritarias que no tienen match con la base de promotoria.",
+      formula:
+        "Oportunidad sin promotoria = suma de oportunidadVenta en tiendas prioritarias donde promotoria = No",
+      dataSource:
+        "Se calcula sobre el top de oportunidad del dashboard, tomando como no cubiertas las tiendas sin match contra la base de promotoria.",
+      example:
+        `${formatCompactCurrency(
+          promoterCoverage.opportunityWithoutPromoter.reduce((sum, row) => sum + row.oportunidadVenta, 0),
+        )} de oportunidad en tiendas sin cobertura registrada.`,
+      rationale:
+        "Te ayuda a detectar donde el crecimiento puede requerir antes una decision de cobertura o asignacion de promotores.",
+    },
+    promotoria_match_table: {
+      title: "Resumen de match de promotoria",
+      definition:
+        "Resume que tiendas del archivo de promotoria ya hacen match con el dashboard y cuales todavia no aparecen en el corte.",
+      formula:
+        "Match = tienda del archivo de promotoria que se puede relacionar con el dashboard por determinante o nombre",
+      dataSource:
+        `Usa el cruce entre ${promotoria.source} y las tiendas activas del dashboard actual.`,
+      example:
+        `${formatNumber(promoterCoverage.matchedDirectoryRows.length)} tiendas hacen match y ${formatNumber(
+          promotoria.tiendas.length - promoterCoverage.matchedDirectoryRows.length,
+        )} quedan sin match en el corte actual.`,
+      rationale:
+        "Sirve para distinguir si un hueco comercial es de cobertura real o simplemente de ausencia en el corte de ventas analizado.",
+    },
     devoluciones: {
       title: "Devoluciones",
       definition:
@@ -789,9 +904,16 @@ function buildHelpRegistry(
 export function AnalyticsPanel({
   mediciones,
   calidad,
-}: Pick<DashboardData, "mediciones" | "calidad">) {
+  promotoria,
+}: Pick<DashboardData, "mediciones" | "calidad" | "promotoria">) {
   const current: MeasurementSuite = mediciones.raw;
-  const promoterMock = useMemo(() => buildMockPromoterCoverage(current), [current]);
+  const promoterCoverage = useMemo(() => buildPromoterCoverage(current, promotoria), [current, promotoria]);
+  const promoterMatchRows = useMemo(() => {
+    const matched = promotoria.tiendas.filter((row) => row.matchedDashboardStore);
+    const unmatched = promotoria.tiendas.filter((row) => !row.matchedDashboardStore);
+    const total = Math.max(matched.length, unmatched.length);
+    return Array.from({ length: total }, (_, index) => [matched[index] ?? null, unmatched[index] ?? null] as const);
+  }, [promotoria]);
   const [activeHelpKey, setActiveHelpKey] = useState<AnalyticsHelpKey | null>(null);
   const [returnFocusTo, setReturnFocusTo] = useState<HTMLElement | null>(null);
   const familyIndexValues = current.indicePrecio.payload.familias.map((row) => row.indexVsMarket);
@@ -800,8 +922,8 @@ export function AnalyticsPanel({
       ? familyIndexValues.reduce((total, value) => total + value, 0) / familyIndexValues.length
       : 0;
   const helpRegistry = useMemo(
-    () => buildHelpRegistry(current, calidad, avgFamilyIndex),
-    [avgFamilyIndex, calidad, current],
+    () => buildHelpRegistry(current, calidad, avgFamilyIndex, promotoria),
+    [avgFamilyIndex, calidad, current, promotoria],
   );
 
   const openHelp = (key: AnalyticsHelpKey) => (trigger: HTMLElement) => {
@@ -816,23 +938,6 @@ export function AnalyticsPanel({
   return (
     <>
       <section className="space-y-12">
-      <SectionLead
-        eyebrow="Analitica"
-        title="Nueva capa de medicion comercial"
-        description="Esta vista muestra la fotografia completa del archivo raw: cobertura, oportunidad, surtido, precio y calidad del dato sin aplicar depuracion comercial."
-      />
-
-      <div className="rounded-[2rem] border border-slate-100 bg-slate-950 px-6 py-5 text-white shadow-sm">
-        <div className="flex items-center gap-3">
-          <p className="text-[10px] font-bold uppercase tracking-[0.28em] text-slate-400">Base activa</p>
-          <HelpTrigger label="Abrir ayuda para Base activa" onOpen={openHelp("base_activa")} />
-        </div>
-        <p className="mt-2 text-lg font-semibold">Raw</p>
-        <p className="mt-1 text-sm text-slate-300">
-          Incluye devoluciones, exhibiciones, descuentos, obsequios, promocionales y capturas anomalas tal como vienen en el archivo.
-        </p>
-      </div>
-
       <div className="grid gap-6 xl:grid-cols-4">
         <MetricCard
           label="Distribucion numerica"
@@ -872,97 +977,126 @@ export function AnalyticsPanel({
           rows={current.oportunidadTiendas.payload.rows.map((row) => ({
             label: row.tienda,
             value: row.oportunidadVenta,
-            highlight: row.shareActual < 0.03,
+            highlight: Boolean(row.promotoria),
+            badgeLabel: row.shareActual < 0.03 ? "<3%" : undefined,
           }))}
           color="#2563eb"
           highlightColor="#dc2626"
+          yAxisWidth={210}
+          legendItems={[
+            { label: "Sin promotoria", color: "#2563eb" },
+            { label: "Con promotoria", color: "#dc2626" },
+            { label: "Share < 3%", kind: "badge" },
+          ]}
+          note="El color identifica cobertura de promotoria. El nombre en amarillo marca tiendas con share actual menor a 3%."
           onInfoClick={openHelp("top_oportunidad_chart")}
           infoLabel="Abrir ayuda para Top 10 tiendas por oportunidad no capturada"
         />
 
-        <section className="rounded-[2rem] border border-amber-100 bg-amber-50/70 p-6 shadow-sm">
-          <p className="text-[10px] font-bold uppercase tracking-[0.28em] text-amber-700">Supuesto comercial</p>
-          <div className="mt-3 flex flex-col gap-3 xl:flex-row xl:items-end xl:justify-between">
-            <div>
-              <h4 className="text-2xl font-bold tracking-tight text-slate-900">Promotoria supuesta en Sears</h4>
-              <p className="mt-2 max-w-3xl text-sm leading-7 text-slate-700">
-                Como todavia no existe la base real de promotores, esta capa es un mock de trabajo. Asumimos
-                promotoria en tiendas benchmark de share y en plazas fisicas con venta Spring relevante.
-              </p>
+        <details className="rounded-[1.5rem] border border-emerald-100 bg-emerald-50/55 p-4 shadow-sm">
+          <summary className="flex cursor-pointer list-none flex-col gap-3 xl:flex-row xl:items-center xl:justify-between">
+            <div className="min-w-0">
+              <div className="flex items-center gap-2">
+                <p className="text-[10px] font-bold uppercase tracking-[0.28em] text-emerald-700">Cobertura real</p>
+                <HelpTrigger label="Abrir ayuda para Tiendas con promotoria" onOpen={openHelp("promotoria_total")} />
+              </div>
+              <p className="mt-2 text-sm font-semibold text-slate-900">Promotoria registrada en Sears</p>
             </div>
-            <StatusBadge tone="mixed" label="Mock de negocio, no dato real" />
-          </div>
 
-          <div className="mt-6 grid gap-4 xl:grid-cols-3">
-            <SupportStat
-              label="Tiendas con promotoria supuesta"
-              value={formatNumber(promoterMock.rows.length)}
-            />
-            <SupportStat
-              label="Oportunidad con promotoria"
-              value={formatCompactCurrency(
-                promoterMock.opportunityWithPromoter.reduce((sum, row) => sum + row.oportunidadVenta, 0),
-              )}
-            />
-            <SupportStat
-              label="Oportunidad sin promotoria"
-              value={formatCompactCurrency(
-                promoterMock.opportunityWithoutPromoter.reduce((sum, row) => sum + row.oportunidadVenta, 0),
-              )}
-            />
-          </div>
-
-          <div className="mt-6 rounded-[1.5rem] border border-amber-200 bg-white/80 p-5">
-            <p className="text-[10px] font-bold uppercase tracking-[0.24em] text-amber-700">Criterio mock</p>
-            <p className="mt-2 text-sm leading-7 text-slate-700">
-              Se asume promotoria en tiendas fisicas con alto desempeno de marca: benchmark de share o plazas con
-              venta Spring relevante y presencia comercial visible. `Internet` queda fuera por ser canal digital.
-            </p>
-            <div className="mt-4 flex flex-wrap gap-2">
-              {promoterMock.rows.map((row) => (
-                <span
-                  key={row.tienda}
-                  className="inline-flex rounded-full border border-slate-200 bg-white px-3 py-1.5 text-xs font-medium text-slate-700"
-                  title={row.reason}
-                >
-                  {shortStoreLabel(row.tienda)}
-                </span>
-              ))}
+            <div className="flex flex-wrap items-center gap-2">
+              <StatusBadge tone="yes" label={`${formatNumber(promotoria.matchedDashboardStores)} / ${formatNumber(promotoria.totalTiendas)} match`} />
+              <StatusBadge
+                tone="mixed"
+                label={`Con ${formatCompactCurrency(
+                  promoterCoverage.opportunityWithPromoter.reduce((sum, row) => sum + row.oportunidadVenta, 0),
+                )}`}
+              />
+              <StatusBadge
+                tone="no"
+                label={`Sin ${formatCompactCurrency(
+                  promoterCoverage.opportunityWithoutPromoter.reduce((sum, row) => sum + row.oportunidadVenta, 0),
+                )}`}
+              />
+              <StatusBadge tone="yes" label={`Fuente: ${promotoria.source}`} />
             </div>
-          </div>
-        </section>
+          </summary>
 
-        <div className="grid gap-4 xl:grid-cols-2">
-          <article className="rounded-[1.75rem] border border-blue-100 bg-blue-50/70 p-5">
-            <p className="text-[10px] font-bold uppercase tracking-[0.24em] text-blue-500">Como leer la primera tabla</p>
-            <h4 className="mt-3 text-lg font-bold tracking-tight text-slate-900">Detalle de oportunidad por tienda</h4>
-            <p className="mt-2 text-sm leading-7 text-slate-700">
-              Muestra las tiendas con mayor venta potencial a capturar. El orden lo define la oportunidad en pesos:
-              donde el mercado es grande y Spring Air todavia esta por debajo del share objetivo.
-            </p>
-          </article>
-          <article className="rounded-[1.75rem] border border-emerald-100 bg-emerald-50/70 p-5">
-            <p className="text-[10px] font-bold uppercase tracking-[0.24em] text-emerald-600">Como leer la segunda tabla</p>
-            <h4 className="mt-3 text-lg font-bold tracking-tight text-slate-900">Tiendas blancas priorizadas</h4>
-            <p className="mt-2 text-sm leading-7 text-slate-700">
-              Es un filtro mas exigente: solo deja tiendas con mercado relevante y con participacion Spring Air menor
-              a 3%. Sirve para detectar plazas donde la marca casi no existe y deberia activarse cobertura.
-            </p>
-          </article>
-        </div>
+          <div className="mt-4 space-y-4">
+            <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-4">
+              <SupportStat
+                label="Tiendas con promotoria"
+                value={formatNumber(promotoria.totalTiendas)}
+                onHelp={openHelp("promotoria_total")}
+              />
+              <SupportStat
+                label="Tiendas activas con match"
+                value={formatNumber(promotoria.matchedDashboardStores)}
+                helper={`${formatPercent(promotoria.totalTiendas > 0 ? promotoria.matchedDashboardStores / promotoria.totalTiendas : 0)} del archivo`}
+                onHelp={openHelp("promotoria_match")}
+              />
+              <SupportStat
+                label="Oportunidad con promotoria"
+                value={formatCompactCurrency(
+                  promoterCoverage.opportunityWithPromoter.reduce((sum, row) => sum + row.oportunidadVenta, 0),
+                )}
+                onHelp={openHelp("promotoria_oportunidad_con")}
+              />
+              <SupportStat
+                label="Oportunidad sin promotoria"
+                value={formatCompactCurrency(
+                  promoterCoverage.opportunityWithoutPromoter.reduce((sum, row) => sum + row.oportunidadVenta, 0),
+                )}
+                onHelp={openHelp("promotoria_oportunidad_sin")}
+              />
+            </div>
+
+            <details className="rounded-[1.25rem] border border-emerald-200 bg-white/80 p-3">
+              <summary className="flex cursor-pointer list-none items-center justify-between gap-3 text-sm font-semibold text-slate-900">
+                <span>Resumen de match de promotoria</span>
+                <HelpTrigger label="Abrir ayuda para Resumen de match de promotoria" onOpen={openHelp("promotoria_match_table")} />
+              </summary>
+              <div className="mt-3 overflow-x-auto">
+                <table className="min-w-full text-left">
+                  <thead className="border-b border-slate-100 bg-slate-50/90">
+                    <tr>
+                      {["Hace match en dashboard", "Det.", "No hace match en dashboard", "Det."].map((header) => (
+                        <th key={header} className="px-4 py-3 text-[10px] font-bold uppercase tracking-[0.22em] text-slate-400">
+                          {header}
+                        </th>
+                      ))}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {promoterMatchRows.map(([matched, unmatched], index) => (
+                      <tr key={index} className="border-b border-slate-100/80 last:border-b-0">
+                        <td className="px-4 py-3 text-sm text-slate-700">
+                          {matched ? matched.matchedDashboardStore ?? matched.tienda : "-"}
+                        </td>
+                        <td className="px-4 py-3 text-sm text-slate-700">{matched?.determinante ?? "-"}</td>
+                        <td className="px-4 py-3 text-sm text-slate-700">{unmatched?.tienda ?? "-"}</td>
+                        <td className="px-4 py-3 text-sm text-slate-700">{unmatched?.determinante ?? "-"}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </details>
+          </div>
+        </details>
 
         <div className="grid gap-6 xl:grid-cols-2">
           <MiniTable
             title="Detalle de oportunidad por tienda"
             onHelp={openHelp("detalle_oportunidad_table")}
-            headers={["Tienda", "Promotoria mock", "Mercado", "Spring", "Share actual", "Gap", "Oportunidad"]}
+            compact
+            headers={["Tienda", "Mercado", "Spring", "Share actual", "Gap", "Oportunidad"]}
             rows={current.oportunidadTiendas.payload.rows.map((row) => [
-              row.tienda,
-              promoterMock.coveredStores.has(row.tienda) ? (
-                <StatusBadge tone="yes" label="Si" />
-              ) : (
-                <StatusBadge tone="no" label="No" />
-              ),
+              <StoreCompactCell
+                key={`op-${row.tienda}-${row.determinante ?? "na"}`}
+                tienda={row.tienda}
+                determinante={row.determinante}
+                promotoria={row.promotoria}
+              />,
               formatCurrency(row.ventasMercado),
               formatCurrency(row.ventasSpring),
               formatPercent(row.shareActual),
@@ -973,14 +1107,15 @@ export function AnalyticsPanel({
           <MiniTable
             title="Tiendas blancas priorizadas"
             onHelp={openHelp("tiendas_blancas_table")}
-            headers={["Tienda blanca", "Promotoria mock", "Mercado", "Spring", "Share actual", "Oportunidad"]}
+            compact
+            headers={["Tienda blanca", "Mercado", "Spring", "Share actual", "Oportunidad"]}
             rows={current.tiendasBlancas.payload.rows.map((row) => [
-              row.tienda,
-              promoterMock.coveredStores.has(row.tienda) ? (
-                <StatusBadge tone="yes" label="Si" />
-              ) : (
-                <StatusBadge tone="no" label="No" />
-              ),
+              <StoreCompactCell
+                key={`white-${row.tienda}-${row.determinante ?? "na"}`}
+                tienda={row.tienda}
+                determinante={row.determinante}
+                promotoria={row.promotoria}
+              />,
               formatCurrency(row.ventasMercado),
               formatCurrency(row.ventasSpring),
               formatPercent(row.shareActual),
@@ -997,7 +1132,7 @@ export function AnalyticsPanel({
           infoLabel="Abrir ayuda para Oportunidad comercial y espacios blancos"
           note={`Base ${current.mapaOportunidad.base}: ${formatNumber(
             current.tiendasBlancas.payload.rows.length,
-          )} tiendas blancas y ${formatNumber(current.oportunidadTiendas.payload.rows.length)} focos de oportunidad priorizados.`}
+          )} tiendas blancas, ${formatNumber(current.oportunidadTiendas.payload.rows.length)} focos de oportunidad, ${formatNumber(promotoria.matchedDashboardStores)} tiendas con promotoria registrada y borde verde para tiendas con cobertura.`}
         />
       </section>
 

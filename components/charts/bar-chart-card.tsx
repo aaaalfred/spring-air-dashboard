@@ -1,5 +1,6 @@
 "use client";
 
+import type { ReactNode } from "react";
 import {
   Bar,
   BarChart,
@@ -17,6 +18,13 @@ interface ChartRow {
   label: string;
   value: number;
   highlight?: boolean;
+  badgeLabel?: string;
+}
+
+interface LegendItem {
+  label: string;
+  color?: string;
+  kind?: "dot" | "badge";
 }
 
 interface BarChartCardProps {
@@ -27,6 +35,9 @@ interface BarChartCardProps {
   infoTooltip?: string;
   onInfoClick?: (trigger: HTMLElement) => void;
   infoLabel?: string;
+  legendItems?: LegendItem[];
+  note?: ReactNode;
+  yAxisWidth?: number;
 }
 
 export function BarChartCard({
@@ -37,7 +48,12 @@ export function BarChartCard({
   infoTooltip,
   onInfoClick,
   infoLabel,
+  legendItems,
+  note,
+  yAxisWidth = 150,
 }: BarChartCardProps) {
+  const hasRowBadges = rows.some((row) => row.badgeLabel);
+
   return (
     <section className="rounded-[2.5rem] border border-slate-100 bg-white p-10 shadow-sm">
       <div className="mb-6">
@@ -63,6 +79,30 @@ export function BarChartCard({
             </span>
           ) : null}
         </div>
+        {legendItems?.length ? (
+          <div className="mt-4 flex flex-wrap gap-3">
+            {legendItems.map((item) =>
+              item.kind === "badge" ? (
+                <span
+                  key={item.label}
+                  className="inline-flex items-center rounded-full border border-amber-200 bg-amber-50 px-2.5 py-1 text-xs font-semibold text-amber-700"
+                >
+                  {item.label}
+                </span>
+              ) : (
+                <span key={item.label} className="inline-flex items-center gap-2 text-xs font-medium text-slate-500">
+                  <span
+                    className="h-2.5 w-2.5 rounded-full"
+                    style={{ backgroundColor: item.color ?? color }}
+                    aria-hidden="true"
+                  />
+                  {item.label}
+                </span>
+              ),
+            )}
+          </div>
+        ) : null}
+        {note ? <p className="mt-3 text-sm text-slate-500">{note}</p> : null}
       </div>
 
       <div className="h-[380px]">
@@ -70,7 +110,52 @@ export function BarChartCard({
           <BarChart data={rows} layout="vertical" margin={{ top: 8, right: 16, bottom: 8, left: 8 }}>
             <CartesianGrid stroke="rgba(15, 23, 42, 0.06)" horizontal={false} />
             <XAxis type="number" tickFormatter={(value) => formatCompactCurrency(Number(value))} stroke="#94a3b8" />
-            <YAxis type="category" dataKey="label" stroke="#94a3b8" width={150} tick={{ fontSize: 12 }} />
+            <YAxis
+              type="category"
+              dataKey="label"
+              stroke="#94a3b8"
+              width={yAxisWidth}
+              tick={
+                hasRowBadges
+                  ? ({ x, y, payload }) => {
+                      const row = rows.find((item) => item.label === payload.value);
+                      const label = String(payload.value);
+                      const badgeWidth = Math.max(52, Math.min(164, label.length * 6.6 + 18));
+
+                      return (
+                        <g transform={`translate(${x},${y})`}>
+                          {row?.badgeLabel ? (
+                            <g transform={`translate(${-badgeWidth - 10},-10)`}>
+                              <rect
+                                width={badgeWidth}
+                                height="20"
+                                rx="10"
+                                fill="#fef3c7"
+                                stroke="#f59e0b"
+                                strokeWidth="1"
+                              />
+                              <text
+                                x={badgeWidth / 2}
+                                y="13"
+                                textAnchor="middle"
+                                fill="#b45309"
+                                fontSize={10}
+                                fontWeight={700}
+                              >
+                                {label}
+                              </text>
+                            </g>
+                          ) : (
+                            <text x={-10} y={4} textAnchor="end" fill="#94a3b8" fontSize={12}>
+                              {label}
+                            </text>
+                          )}
+                        </g>
+                      );
+                    }
+                  : { fontSize: 12 }
+              }
+            />
             <Tooltip
               formatter={(value) => formatCompactCurrency(Number(value ?? 0))}
               cursor={{ fill: "rgba(15, 23, 42, 0.04)" }}
