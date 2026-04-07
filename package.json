@@ -2,9 +2,11 @@
   "name": "spring-air-dashboard",
   "version": "1.0.0",
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
+    "predev": "node scripts/clear-next-artifacts.mjs",
+    "dev": "node scripts/start-next-dev.mjs",
+    "prebuild": "node scripts/clear-next-artifacts.mjs",
+    "build": "node ./node_modules/next/dist/bin/next build",
+    "start": "node .next/standalone/server.js",
     "lint": "eslint .",
     "data:build": "tsx scripts/build-dashboard-data.ts",
     "data:validate": "tsx scripts/validate-dashboard-data.ts"

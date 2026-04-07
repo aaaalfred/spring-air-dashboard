@@ -16,6 +16,9 @@ import type {
   MarketSkuRow,
   MeasurementSuite,
   MetricBase,
+  ParetoAnalysis,
+  ParetoGroup,
+  ParetoRow,
   PortfolioConcentrationMetric,
   PriceMixBand,
   PromoterStoreRow,
@@ -104,6 +107,7 @@ const TOTAL_SALES_INDEX = 67;
 const BASE_COLUMNS = 68;
 const SPRING_NAME_MATCHER = /SPRING AIR/i;
 const NO_CORE_MATCHER = /(DESC|EXHIBICION|OBSEQUIO|PROMOCIONALES?|PROMOCION)/i;
+const DK_PROVIDER_ID = 2016187;
 const PROMOTER_STORE_ALIASES: PromoterStoreAlias[] = [
   { sourceName: "OUTLET", sourceLocation: "PACHUCA", dashboardStoreId: 213, dashboardStoreName: "PACHUCA OUTLET" },
   { sourceName: "SAN LUIS PLAZA", sourceLocation: "SAN LUIS POTOSI", dashboardStoreId: 241, dashboardStoreName: "SAN LUIS PLAZA" },
@@ -615,6 +619,65 @@ function aggregateStores(records: BaseRecord[], springRecords: BaseRecord[], spr
     .sort((left, right) => right.ventas - left.ventas);
 }
 
+function buildParetoGroup<T>(
+  rows: T[],
+  options: {
+    getId: (row: T) => string;
+    getLabel: (row: T) => string;
+    getVentas: (row: T) => number;
+    getPiezas: (row: T) => number;
+  },
+): ParetoGroup {
+  const normalized = rows
+    .map((row) => ({
+      id: options.getId(row),
+      label: options.getLabel(row),
+      ventas: options.getVentas(row),
+      piezas: options.getPiezas(row),
+    }))
+    .filter((row) => row.ventas > 0)
+    .sort((left, right) => right.ventas - left.ventas);
+
+  const totalVentas = sum(normalized.map((row) => row.ventas));
+  const totalPiezas = sum(normalized.map((row) => row.piezas));
+  let running = 0;
+
+  const paretoRows: ParetoRow[] = normalized.map((row, index) => {
+    running += row.ventas;
+    const cumulativeShare = safeDivide(running, totalVentas);
+    return {
+      rank: index + 1,
+      id: row.id,
+      label: row.label,
+      ventas: row.ventas,
+      piezas: row.piezas,
+      ticketPromedio: safeDivide(row.ventas, row.piezas),
+      share: safeDivide(row.ventas, totalVentas),
+      cumulativeShare,
+      within80: cumulativeShare <= 0.8 || index === 0,
+    };
+  });
+
+  const top80Cutoff = paretoRows.findIndex((row) => row.cumulativeShare >= 0.8);
+  const top80Count = top80Cutoff >= 0 ? top80Cutoff + 1 : paretoRows.length;
+  const top80Rows = paretoRows.slice(0, top80Count).map((row) => ({ ...row, within80: true }));
+  const remainingRows = paretoRows.slice(top80Count).map((row) => ({ ...row, within80: false }));
+  const rowsWithParetoFlag = [...top80Rows, ...remainingRows];
+  const top80Sales = sum(top80Rows.map((row) => row.ventas));
+
+  return {
+    totalVentas,
+    totalPiezas,
+    ticketPromedio: safeDivide(totalVentas, totalPiezas),
+    totalItems: rowsWithParetoFlag.length,
+    top80Count,
+    top80Sales,
+    top80Share: safeDivide(top80Sales, totalVentas),
+    topItem: rowsWithParetoFlag[0] ?? null,
+    rows: rowsWithParetoFlag,
+  };
+}
+
 function buildMapRows(
   stores: StoreRow[],
   coordinateLookup: Map<string, CoordinateRow>,
@@ -761,21 +824,22 @@ function buildStoreOpportunityRows(records: BaseRecord[], coordinateLookup: Map<
     marketStoreSales.set(record.tienda, aggregate);
   }
 
-  const shares = [...marketStoreSales.entries()]
+  const totalVentasMercado = sum([...marketStoreSales.values()].map((row) => row.ventasMercado));
+  const totalVentasSpring = sum([...marketStoreSales.values()].map((row) => row.ventasSpring));
+  const shareObjetivo = safeDivide(totalVentasSpring, totalVentasMercado);
+  const marketMedian = median([...marketStoreSales.values()].map((row) => row.ventasMercado));
+  const supportRows = [...marketStoreSales.entries()]
     .map(([tienda, aggregate]) => ({
       tienda,
       ventasMercado: aggregate.ventasMercado,
       ventasSpring: aggregate.ventasSpring,
       shareActual: safeDivide(aggregate.ventasSpring, aggregate.ventasMercado),
     }))
-    .filter((row) => row.ventasSpring > 0 && row.ventasMercado > 0)
-    .sort((left, right) => right.shareActual - left.shareActual);
-
-  const topShares = shares.slice(0, 10);
-  const shareObjetivo = topShares.length > 0 ? sum(topShares.map((row) => row.shareActual)) / topShares.length : 0;
-  const marketMedian = median([...marketStoreSales.values()].map((row) => row.ventasMercado));
-  const benchmarkStores = topShares.map((row) => row.tienda);
-  const benchmarkRows = topShares.map((row) => {
+    .filter((row) => row.ventasMercado > 0)
+    .sort((left, right) => right.ventasMercado - left.ventasMercado)
+    .slice(0, 10);
+  const benchmarkStores = supportRows.map((row) => row.tienda);
+  const benchmarkRows = supportRows.map((row) => {
     const tiendaId = marketStoreSales.get(row.tienda)?.tiendaId ?? null;
     const coordinate = findCoordinate(coordinateLookup, row.tienda, tiendaId);
     return {
@@ -828,6 +892,8 @@ function buildStoreOpportunityRows(records: BaseRecord[], coordinateLookup: Map<
   return {
     shareObjetivo,
     marketMedian,
+    totalVentasMercado,
+    totalVentasSpring,
     benchmarkStores,
     benchmarkRows,
     rows,
@@ -1047,6 +1113,73 @@ function buildDailyConsistency(springRecords: BaseRecord[]) {
   };
 }
 
+function buildParetoAnalysis(rawRecords: BaseRecord[], springRecords: BaseRecord[]): ParetoAnalysis {
+  const dkRecords = rawRecords.filter((record) => record.proveedorId === DK_PROVIDER_ID);
+  const dkProvider = dkRecords[0]?.proveedor ?? "INDUSTRIAS DK SA DE CV";
+
+  const aggregateStoreRows = (records: BaseRecord[]) =>
+    [...records.reduce((map, record) => {
+      const current = map.get(record.tienda) ?? {
+        tiendaId: record.tiendaId,
+        tienda: record.tienda,
+        ventas: 0,
+        piezas: 0,
+      };
+      current.ventas += record.ventas;
+      current.piezas += record.piezas;
+      map.set(record.tienda, current);
+      return map;
+    }, new Map<string, { tiendaId: number | null; tienda: string; ventas: number; piezas: number }>()).values()];
+
+  const aggregateSkuRows = (records: BaseRecord[]) =>
+    [...records.reduce((map, record) => {
+      const key = `${record.interno ?? "na"}-${record.descripcion}`;
+      const current = map.get(key) ?? {
+        interno: record.interno,
+        descripcion: record.descripcion,
+        ventas: 0,
+        piezas: 0,
+      };
+      current.ventas += record.ventas;
+      current.piezas += record.piezas;
+      map.set(key, current);
+      return map;
+    }, new Map<string, { interno: number | null; descripcion: string; ventas: number; piezas: number }>()).values()];
+
+  return {
+    competitor: {
+      providerId: DK_PROVIDER_ID,
+      provider: dkProvider,
+      stores: buildParetoGroup(aggregateStoreRows(dkRecords), {
+        getId: (row) => String(row.tiendaId ?? row.tienda),
+        getLabel: (row) => row.tienda,
+        getVentas: (row) => row.ventas,
+        getPiezas: (row) => row.piezas,
+      }),
+      skus: buildParetoGroup(aggregateSkuRows(dkRecords), {
+        getId: (row) => String(row.interno ?? row.descripcion),
+        getLabel: (row) => row.descripcion,
+        getVentas: (row) => row.ventas,
+        getPiezas: (row) => row.piezas,
+      }),
+    },
+    spring: {
+      stores: buildParetoGroup(aggregateStoreRows(springRecords), {
+        getId: (row) => String(row.tiendaId ?? row.tienda),
+        getLabel: (row) => row.tienda,
+        getVentas: (row) => row.ventas,
+        getPiezas: (row) => row.piezas,
+      }),
+      skus: buildParetoGroup(aggregateSkuRows(springRecords), {
+        getId: (row) => String(row.interno ?? row.descripcion),
+        getLabel: (row) => row.descripcion,
+        getVentas: (row) => row.ventas,
+        getPiezas: (row) => row.piezas,
+      }),
+    },
+  };
+}
+
 function buildDependencyMetrics(springRecords: BaseRecord[], productividad: ProductividadSkuRow[]) {
   const springSales = sum(springRecords.map((record) => record.ventas));
   const familySales = new Map<string, number>();
@@ -1153,8 +1286,11 @@ function buildMeasurementSuite(
       payload: {
         shareObjetivo: opportunity.shareObjetivo,
         marketMedian: opportunity.marketMedian,
+        totalVentasMercado: opportunity.totalVentasMercado,
+        totalVentasSpring: opportunity.totalVentasSpring,
         benchmarkStores: opportunity.benchmarkStores,
         benchmarkRows: opportunity.benchmarkRows,
+        allRows: opportunity.rows,
         rows: opportunity.rows.slice(0, 10),
       },
     },
@@ -1325,6 +1461,7 @@ export function buildDashboardData(excelFilePath: string): DashboardData {
   const springRecords = rawRecords.filter((record) => SPRING_NAME_MATCHER.test(record.proveedor));
   const springSales = sum(springRecords.map((record) => record.ventas));
   const springUnits = sum(springRecords.map((record) => record.piezas));
+  const pareto = buildParetoAnalysis(rawRecords, springRecords);
   const productos = aggregateProducts(springRecords, springSales);
   const skus = aggregateMarketSkus(rawRecords, marketSales);
   const tiendas = aggregateStores(rawRecords, springRecords, springSales);
@@ -1435,6 +1572,7 @@ export function buildDashboardData(excelFilePath: string): DashboardData {
       comercialLimpia: buildMeasurementSuite(cleanRecords, "comercial_limpia", generatedAt, coordinateLookup),
     },
     calidad: buildDataQualityStats(rawRecords, coordinateLookup, generatedAt),
+    pareto,
     promotoria: {
       source: "tiendas_export.xlsx",
       totalTiendas: promotoriaRows.length,

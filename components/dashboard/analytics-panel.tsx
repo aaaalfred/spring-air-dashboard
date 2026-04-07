@@ -104,12 +104,12 @@ function CardTitle({
   onHelp,
 }: {
   title: string;
-  onHelp: (trigger: HTMLElement) => void;
+  onHelp?: (trigger: HTMLElement) => void;
 }) {
   return (
     <div className="mb-4 flex items-center gap-3">
       <h4 className="text-lg font-bold tracking-tight text-slate-900">{title}</h4>
-      <HelpTrigger label={`Abrir ayuda para ${title}`} onOpen={onHelp} />
+      {onHelp ? <HelpTrigger label={`Abrir ayuda para ${title}`} onOpen={onHelp} /> : null}
     </div>
   );
 }
@@ -122,7 +122,7 @@ function MiniTable({
   compact = false,
 }: {
   title: string;
-  onHelp: (trigger: HTMLElement) => void;
+  onHelp?: (trigger: HTMLElement) => void;
   headers: string[];
   rows: ReactNode[][];
   compact?: boolean;
@@ -313,19 +313,17 @@ function shortStoreLabel(store: string) {
 function ShareObjectiveSupport({
   rows,
   shareObjetivo,
+  totalVentasMercado,
+  totalVentasSpring,
 }: {
   rows: StoreOpportunityRow[];
   shareObjetivo: number;
+  totalVentasMercado: number;
+  totalVentasSpring: number;
 }) {
-  const totalMercado = rows.reduce((sum, row) => sum + row.ventasMercado, 0);
-  const totalSpring = rows.reduce((sum, row) => sum + row.ventasSpring, 0);
-  const averageShare = rows.length > 0 ? rows.reduce((sum, row) => sum + row.shareActual, 0) / rows.length : 0;
   const salesMax = Math.max(...rows.map((row) => row.ventasMercado), 0);
   const shareMax = Math.max(...rows.map((row) => row.shareActual), shareObjetivo, 0.3);
-  const formulaLine =
-    rows.length > 0
-      ? `(${rows.map((row) => `${(row.shareActual * 100).toFixed(4)}%`).join(" + ")}) / ${rows.length} = ${(averageShare * 100).toFixed(4)}%`
-      : "No hay tiendas benchmark disponibles.";
+  const formulaLine = `${formatCurrency(totalVentasSpring)} / ${formatCurrency(totalVentasMercado)} = ${formatPercent(shareObjetivo)}`;
 
   const chartRows = rows.map((row) => ({
     ...row,
@@ -335,16 +333,16 @@ function ShareObjectiveSupport({
   return (
     <div className="space-y-6">
       <div className="grid gap-4 md:grid-cols-3">
-        <SupportStat label="Venta total (top 10)" value={formatCompactCurrency(totalMercado)} />
-        <SupportStat label="Venta Spring Air (top 10)" value={formatCompactCurrency(totalSpring)} />
-        <SupportStat label="Share promedio" value={formatPercent(averageShare)} />
+        <SupportStat label="Venta total cadena" value={formatCompactCurrency(totalVentasMercado)} />
+        <SupportStat label="Venta Spring Air cadena" value={formatCompactCurrency(totalVentasSpring)} />
+        <SupportStat label="Share promedio general" value={formatPercent(shareObjetivo)} />
       </div>
 
       <section className="rounded-[1.5rem] border border-slate-100 bg-slate-50/60 p-5">
-        <p className="text-sm font-semibold text-slate-900">Mercado vs Spring Air en las 10 tiendas benchmark</p>
+        <p className="text-sm font-semibold text-slate-900">Mercado vs Spring Air en 10 tiendas de referencia</p>
         <p className="mt-1 text-sm text-slate-500">
-          Estas son las 10 tiendas con mayor share actual de Spring Air. El promedio simple de sus shares es el
-          valor que ves como `Share objetivo por tienda`.
+          El share objetivo ahora sale del promedio general de la cadena Sears, no del top 10. Estas 10 tiendas
+          solo ayudan a dar contexto visual del peso comercial por plaza.
         </p>
         <div className="mt-4 h-[360px]">
           <ResponsiveContainer width="100%" height="100%">
@@ -389,7 +387,7 @@ function ShareObjectiveSupport({
           Share por tienda: línea de referencia {formatPercent(shareObjetivo)}
         </p>
         <p className="mt-1 text-sm text-slate-500">
-          La línea punteada marca el promedio top 10. Las barras más oscuras quedan arriba o en línea; las claras,
+          La línea punteada marca el promedio general de la cadena. Las barras más oscuras quedan arriba o en línea; las claras,
           por debajo.
         </p>
         <div className="mt-4 h-[320px]">
@@ -423,7 +421,7 @@ function ShareObjectiveSupport({
                 stroke="#ea580c"
                 strokeDasharray="6 6"
                 label={{
-                  value: `${formatPercent(shareObjetivo)} promedio top 10`,
+                  value: `${formatPercent(shareObjetivo)} promedio cadena`,
                   position: "insideTopRight",
                   fill: "#c2410c",
                   fontSize: 12,
@@ -509,8 +507,6 @@ function buildHelpRegistry(
   const priceStore = current.indicePrecio.payload.tiendas[0];
   const priceFamily = current.indicePrecio.payload.familias[0];
   const priceSku = current.indicePrecio.payload.skus[0];
-  const benchmarkStores = objective.benchmarkStores.join(", ");
-
   return {
     base_activa: {
       title: "Base activa: Raw",
@@ -556,18 +552,25 @@ function buildHelpRegistry(
     share_objetivo_tienda: {
       title: "Share objetivo por tienda",
       definition:
-        "Es el share benchmark que el modelo usa para estimar la oportunidad comercial faltante en cada tienda.",
+        "Es el share objetivo que el modelo usa para estimar la oportunidad comercial faltante en cada tienda.",
       formula:
-        "1. shareActual por tienda = ventasSpring / ventasMercado\n2. Ordenar tiendas con presencia Spring Air por mayor share\n3. Tomar las 10 primeras\n4. shareObjetivo = promedio de esos 10 shares",
+        "Share objetivo = ventas totales Spring Air en Sears / ventas totales mercado en Sears",
       dataSource:
-        `Proviene de la salida de oportunidad por tienda. Las tiendas benchmark actuales son: ${benchmarkStores}.`,
+        `Proviene de la salida de oportunidad por tienda. Se calcula con el total cadena: ${formatCompactCurrency(objective.totalVentasSpring)} de Spring Air sobre ${formatCompactCurrency(objective.totalVentasMercado)} de mercado.`,
       example:
-        `Share objetivo actual = ${formatPercent(objective.shareObjetivo)}\nMediana mercado por tienda = ${formatCompactCurrency(objective.marketMedian)}\nTiendas benchmark: ${benchmarkStores}`,
+        `Share objetivo actual = ${formatPercent(objective.shareObjetivo)}\nFormula = ${formatCurrency(objective.totalVentasSpring)} / ${formatCurrency(objective.totalVentasMercado)}\nMediana mercado por tienda = ${formatCompactCurrency(objective.marketMedian)}`,
       rationale:
-        "Permite comparar una tienda contra un referente interno realista de buen desempeno, en lugar de usar un objetivo arbitrario.",
+        "Permite comparar cada tienda contra la participacion promedio real que hoy tiene Spring Air en toda la cadena Sears.",
       notes:
-        "No es el market share total de Spring Air. Es un share objetivo local por tienda, construido con las 10 tiendas de mejor participacion.",
-      visual: <ShareObjectiveSupport rows={benchmarkRows} shareObjetivo={objective.shareObjetivo} />,
+        "No es un benchmark top 10. Es el promedio general real de Spring Air en la cadena Sears para este corte.",
+      visual: (
+        <ShareObjectiveSupport
+          rows={benchmarkRows}
+          shareObjetivo={objective.shareObjetivo}
+          totalVentasMercado={objective.totalVentasMercado}
+          totalVentasSpring={objective.totalVentasSpring}
+        />
+      ),
     },
     indice_promedio_precio: {
       title: "Indice promedio de precio",
@@ -585,7 +588,7 @@ function buildHelpRegistry(
     top_oportunidad_chart: {
       title: "Top 10 tiendas por oportunidad no capturada",
       definition:
-        "Ranking de tiendas donde el modelo estima mas venta incremental si Spring Air alcanzara el share objetivo local.",
+        "Ranking de tiendas donde el modelo estima mas venta incremental si Spring Air alcanzara el share promedio general de la cadena.",
       formula:
         "Oportunidad = max(0, ventasMercado x shareObjetivo - ventasSpring)",
       dataSource:
@@ -954,7 +957,7 @@ export function AnalyticsPanel({
         <MetricCard
           label="Share objetivo por tienda"
           value={formatPercent(current.oportunidadTiendas.payload.shareObjetivo)}
-          helper={`Mediana mercado ${formatCompactCurrency(current.oportunidadTiendas.payload.marketMedian)}`}
+          helper="Promedio general de Sears"
           onHelp={openHelp("share_objetivo_tienda")}
         />
         <MetricCard
@@ -1089,7 +1092,7 @@ export function AnalyticsPanel({
             title="Detalle de oportunidad por tienda"
             onHelp={openHelp("detalle_oportunidad_table")}
             compact
-            headers={["Tienda", "Mercado", "Spring", "Share actual", "Gap", "Oportunidad"]}
+            headers={["Tienda", "Mercado", "Spring", "Share actual", "Objetivo $", "Gap", "Oportunidad"]}
             rows={current.oportunidadTiendas.payload.rows.map((row) => [
               <StoreCompactCell
                 key={`op-${row.tienda}-${row.determinante ?? "na"}`}
@@ -1100,6 +1103,7 @@ export function AnalyticsPanel({
               formatCurrency(row.ventasMercado),
               formatCurrency(row.ventasSpring),
               formatPercent(row.shareActual),
+              formatCurrency(row.ventasMercado * row.shareObjetivo),
               formatPercent(row.gapShare),
               formatCurrency(row.oportunidadVenta),
             ])}
@@ -1108,7 +1112,7 @@ export function AnalyticsPanel({
             title="Tiendas blancas priorizadas"
             onHelp={openHelp("tiendas_blancas_table")}
             compact
-            headers={["Tienda blanca", "Mercado", "Spring", "Share actual", "Oportunidad"]}
+            headers={["Tienda blanca", "Mercado", "Spring", "Share actual", "Objetivo $", "Oportunidad"]}
             rows={current.tiendasBlancas.payload.rows.map((row) => [
               <StoreCompactCell
                 key={`white-${row.tienda}-${row.determinante ?? "na"}`}
@@ -1119,6 +1123,7 @@ export function AnalyticsPanel({
               formatCurrency(row.ventasMercado),
               formatCurrency(row.ventasSpring),
               formatPercent(row.shareActual),
+              formatCurrency(row.ventasMercado * row.shareObjetivo),
               formatCurrency(row.oportunidadVenta),
             ])}
           />

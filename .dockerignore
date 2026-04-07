@@ -1,6 +1,7 @@
 .git
 .gitignore
 .next
+.next-cache
 node_modules
 npm-debug.log
 Dockerfile

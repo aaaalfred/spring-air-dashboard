@@ -7,6 +7,7 @@ import dynamic from "next/dynamic";
 import { AnalyticsPanel } from "@/components/dashboard/analytics-panel";
 import { HistoricalPanel } from "@/components/dashboard/historical-panel";
 import { MapPanel } from "@/components/dashboard/map-panel";
+import { ParetoPanel } from "@/components/dashboard/pareto-panel";
 import {
   formatCompactCurrency,
   formatCurrency,
@@ -44,10 +45,11 @@ const tabs = [
   { id: "analitica", label: "Analitica", icon: "target" },
   { id: "historico", label: "Historico", icon: "clock" },
   { id: "competencia", label: "Competencia", icon: "bars" },
+  { id: "pareto", label: "Pareto 80-20", icon: "target" },
   { id: "productos", label: "Productos", icon: "box" },
   { id: "skus", label: "SKUs", icon: "layers" },
   { id: "tiendas", label: "Tiendas", icon: "store" },
-  { id: "mapa", label: "Mapa", icon: "pin" },
+  { id: "mapa_tiendas", label: "Mapa tiendas", icon: "pin" },
   { id: "insights", label: "Insights", icon: "spark" },
 ] as const;
 
@@ -480,16 +482,6 @@ export function DashboardShell({ data }: { data: DashboardData }) {
                 </div>
               </section>
 
-              <section className="space-y-8">
-                <div className="flex items-center gap-6">
-                  <h3 className="whitespace-nowrap text-[10px] font-bold uppercase tracking-[0.4em] text-slate-300">
-                    Cobertura geografica
-                  </h3>
-                  <div className="h-px flex-1 bg-slate-100" />
-                </div>
-
-                <MapPanel stores={data.mapa.tiendas} note={data.mapa.coverageNote} />
-              </section>
             </section>
           )}
 
@@ -508,7 +500,11 @@ export function DashboardShell({ data }: { data: DashboardData }) {
           )}
 
           {activeTab === "analitica" && (
-            <AnalyticsPanel mediciones={data.mediciones} calidad={data.calidad} promotoria={data.promotoria} />
+            <AnalyticsPanel
+              mediciones={data.mediciones}
+              calidad={data.calidad}
+              promotoria={data.promotoria}
+            />
           )}
 
           {activeTab === "competencia" && (
@@ -547,6 +543,8 @@ export function DashboardShell({ data }: { data: DashboardData }) {
               />
             </section>
           )}
+
+          {activeTab === "pareto" && <ParetoPanel data={data.pareto} />}
 
           {activeTab === "productos" && (
             <section className="space-y-10">
@@ -699,15 +697,21 @@ export function DashboardShell({ data }: { data: DashboardData }) {
             </section>
           )}
 
-          {activeTab === "mapa" && (
-            <section>
+          {activeTab === "mapa_tiendas" && (
+            <section className="space-y-10">
               <SectionHeader
                 eyebrow="Mapa"
-                title="Cobertura geografica actual"
-                description="El mapa conserva la fuente de coordenadas separada, pero ya vive dentro del lenguaje visual de la plantilla."
+                title="Tiendas Spring Air con venta y promotoria"
+                description="Cada circulo representa una tienda Spring Air con coordenadas. El tamano refleja la venta y el borde indica si la tienda cuenta con promotoria."
               />
 
-              <MapPanel stores={data.mapa.tiendas} note={data.mapa.coverageNote} />
+              <MapPanel
+                stores={data.mapa.tiendas}
+                eyebrow="Mapa tiendas"
+                title="Venta de Spring Air por tienda"
+                note={data.mapa.coverageNote}
+                legendMode="spring-sales"
+              />
             </section>
           )}
 

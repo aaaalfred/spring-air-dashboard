@@ -1,8 +1,8 @@
 node_modules
 .next
+.next-cache
 out
 dist
 coverage
 *.log
 next-env.d.ts
-

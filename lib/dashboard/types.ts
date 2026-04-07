@@ -229,14 +229,54 @@ export interface PortfolioConcentrationMetric {
   longTailStoresShare: number;
 }
 
+export interface ParetoRow {
+  rank: number;
+  id: string;
+  label: string;
+  ventas: number;
+  piezas: number;
+  ticketPromedio: number;
+  share: number;
+  cumulativeShare: number;
+  within80: boolean;
+}
+
+export interface ParetoGroup {
+  totalVentas: number;
+  totalPiezas: number;
+  ticketPromedio: number;
+  totalItems: number;
+  top80Count: number;
+  top80Sales: number;
+  top80Share: number;
+  topItem: ParetoRow | null;
+  rows: ParetoRow[];
+}
+
+export interface ParetoAnalysis {
+  competitor: {
+    providerId: number;
+    provider: string;
+    stores: ParetoGroup;
+    skus: ParetoGroup;
+  };
+  spring: {
+    stores: ParetoGroup;
+    skus: ParetoGroup;
+  };
+}
+
 export interface MeasurementSuite {
   distribucion: MetricSnapshot<DistributionMetric>;
   velocidadProveedores: MetricSnapshot<ProviderVelocityRow[]>;
   oportunidadTiendas: MetricSnapshot<{
     shareObjetivo: number;
     marketMedian: number;
+    totalVentasMercado: number;
+    totalVentasSpring: number;
     benchmarkStores: string[];
     benchmarkRows: StoreOpportunityRow[];
+    allRows: StoreOpportunityRow[];
     rows: StoreOpportunityRow[];
   }>;
   tiendasBlancas: MetricSnapshot<{
@@ -366,6 +406,7 @@ export interface DashboardData {
     comercialLimpia: MeasurementSuite;
   };
   calidad: DataQualityStats;
+  pareto: ParetoAnalysis;
   promotoria: {
     source: string;
     totalTiendas: number;
